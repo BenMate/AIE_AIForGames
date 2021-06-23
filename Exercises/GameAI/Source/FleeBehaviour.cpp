@@ -3,7 +3,7 @@
 
 FleeBehaviour::FleeBehaviour()
 {
-
+	m_target = { 0,0 };
 }
 
 FleeBehaviour::~FleeBehaviour()
@@ -15,6 +15,7 @@ void FleeBehaviour::Update(GameObject* obj, float deltaTime)
 {
 
 	float distToTarget = Vector2Distance(obj->GetPosition(), m_target);
+
 	if (distToTarget > m_targetRadius) {
 		if (m_onArriveFn) {
 			m_onArriveFn();
@@ -36,7 +37,7 @@ void FleeBehaviour::Update(GameObject* obj, float deltaTime)
 
 void FleeBehaviour::Draw(GameObject* obj)
 {
-	DrawCircle(m_target.x, m_target.y, m_targetRadius * 3, LIGHTGRAY);
+	DrawCircle(m_target.x, m_target.y, m_targetRadius, LIGHTGRAY);
 	DrawCircle(m_target.x, m_target.y, 5, GRAY);
 }
 

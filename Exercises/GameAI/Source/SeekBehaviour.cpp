@@ -4,7 +4,7 @@
 
 SeekBehaviour::SeekBehaviour() : Behaviour()
 {
-
+	m_target = { 0,0 };
 }
 
 SeekBehaviour::~SeekBehaviour()
@@ -37,7 +37,7 @@ void SeekBehaviour::Update(GameObject* obj, float deltaTime)
 
 void SeekBehaviour::Draw(GameObject* obj)
 {
-	DrawCircle(m_target.x, m_target.y, m_targetRadius * 3, LIGHTGRAY);
+	DrawCircle(m_target.x, m_target.y, m_targetRadius, LIGHTGRAY);
 	DrawCircle(m_target.x, m_target.y, 5, GRAY);
 }
 

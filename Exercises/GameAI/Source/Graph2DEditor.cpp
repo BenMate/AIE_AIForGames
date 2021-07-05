@@ -35,30 +35,30 @@ void Graph2DEditor::Update(float deltaTime)
 
 void Graph2DEditor::Draw() 
 {
-	//draw all connection
-	for (auto node : m_graph->GetNodes())
-	{
-		for (auto connection : node->connections) {
-			DrawLine(node->data.x, node->data.y, connection.to->data.x, connection.to->data.y, GRAY);
-		}
-	}
+	////draw all connection
+	//for (auto node : m_graph->GetNodes())
+	//{
+	//	for (auto connection : node->connections) {
+	//		DrawLine(node->data.x, node->data.y, connection.to->data.x, connection.to->data.y, GRAY);
+	//	}
+	//}
 
-	//draw all nodes
-	for (auto node : m_graph->GetNodes()) 
-	{
-		DrawCircle(node->data.x, node->data.y, 8, LIGHTGRAY);
-		DrawCircleLines(node->data.x, node->data.y, 8, GRAY);
-	}
+	////draw all nodes
+	//for (auto node : m_graph->GetNodes()) 
+	//{
+	//	DrawCircle(node->data.x, node->data.y, 8, LIGHTGRAY);
+	//	DrawCircleLines(node->data.x, node->data.y, 8, GRAY);
+	//}
 
-	//draw a preview node where mouse is
-	auto mousePos = GetMousePosition();
-	DrawCircle(mousePos.x, mousePos.y, 6, LIGHTGRAY);
+	////draw a preview node where mouse is
+	//auto mousePos = GetMousePosition();
+	//DrawCircle(mousePos.x, mousePos.y, 6, LIGHTGRAY);
 
-	std::vector<Graph2D::Node*> nearbyNodes;
-	m_graph->GetNearbyNodes(mousePos, 60, nearbyNodes);
+	//std::vector<Graph2D::Node*> nearbyNodes;
+	//m_graph->GetNearbyNodes(mousePos, 60, nearbyNodes);
 
-	for (auto nearbyNode : nearbyNodes) 
-		DrawLine(mousePos.x, mousePos.y, nearbyNode->data.x, nearbyNode->data.y, LIGHTGRAY);
+	//for (auto nearbyNode : nearbyNodes) 
+	//	DrawLine(mousePos.x, mousePos.y, nearbyNode->data.x, nearbyNode->data.y, LIGHTGRAY);
 }
 
 Graph2D* Graph2DEditor::GetGraph() 
@@ -70,3 +70,4 @@ void Graph2DEditor::SetGraph(Graph2D* graph)
 {
 	m_graph = graph;
 }
+

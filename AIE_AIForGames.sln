@@ -15,6 +15,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AIE_GameAI", "Exercises\Gam
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AIE_03_WarmUp_MakeABox", "Exercises\AIE_03_WarmUp_MakeABox\AIE_03_WarmUp_MakeABox.vcxproj", "{55915EE4-58E8-446E-9B6F-1D894CE46200}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AIE_04_WarmUp_BracketLogic", "Exercises\AIE_04_WarmUp_BracketLogic\AIE_04_WarmUp_BracketLogic.vcxproj", "{AE881D68-5921-43B1-A5C3-20D5B931877F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -55,6 +57,14 @@ Global
 		{55915EE4-58E8-446E-9B6F-1D894CE46200}.Release|x64.Build.0 = Release|x64
 		{55915EE4-58E8-446E-9B6F-1D894CE46200}.Release|x86.ActiveCfg = Release|Win32
 		{55915EE4-58E8-446E-9B6F-1D894CE46200}.Release|x86.Build.0 = Release|Win32
+		{AE881D68-5921-43B1-A5C3-20D5B931877F}.Debug|x64.ActiveCfg = Debug|x64
+		{AE881D68-5921-43B1-A5C3-20D5B931877F}.Debug|x64.Build.0 = Debug|x64
+		{AE881D68-5921-43B1-A5C3-20D5B931877F}.Debug|x86.ActiveCfg = Debug|Win32
+		{AE881D68-5921-43B1-A5C3-20D5B931877F}.Debug|x86.Build.0 = Debug|Win32
+		{AE881D68-5921-43B1-A5C3-20D5B931877F}.Release|x64.ActiveCfg = Release|x64
+		{AE881D68-5921-43B1-A5C3-20D5B931877F}.Release|x64.Build.0 = Release|x64
+		{AE881D68-5921-43B1-A5C3-20D5B931877F}.Release|x86.ActiveCfg = Release|Win32
+		{AE881D68-5921-43B1-A5C3-20D5B931877F}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,6 +74,7 @@ Global
 		{83C082F5-9D83-4B42-843F-8CC3AF4B100A} = {BDCE098A-0144-4D23-97AC-BB14EE96DF10}
 		{CC125297-E55B-4163-BE16-EDF28FD51BE7} = {8F40133F-9BF2-4066-A773-0EC68C316F88}
 		{55915EE4-58E8-446E-9B6F-1D894CE46200} = {BDCE098A-0144-4D23-97AC-BB14EE96DF10}
+		{AE881D68-5921-43B1-A5C3-20D5B931877F} = {BDCE098A-0144-4D23-97AC-BB14EE96DF10}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {05411A58-440A-47C2-A8D4-411F81D00A5A}

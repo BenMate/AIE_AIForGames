@@ -58,6 +58,17 @@ int main(int argc, char** argv)
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
 //TODO:
 
 //fix hard coded "60" value representing the radius of nearby nodes to connect
@@ -71,7 +82,3 @@ int main(int argc, char** argv)
 
 //can you do a hovor color on nodes (prevent nodes from being placed on top of each other) ...tip -  get nearbynode function 
 
-//CHALLANGE
-//can you save and load the graph to file... 
-//-- save to xml,json,custom binary format
-//-- tinyXML

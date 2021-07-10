@@ -54,6 +54,12 @@
     <ClCompile Include="Source\GameStateManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\PlayState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GraphState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Inc\Application.h">
@@ -99,6 +105,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Inc\GameStateManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\PlayState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\GraphState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

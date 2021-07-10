@@ -18,25 +18,28 @@ SplashState::~SplashState()
 void SplashState::Load() 
 {
 	std::cout << "Loading Splash" << std::endl;
+
 }
 
 void SplashState::Unload()
 {
 	std::cout << "Unload Splash" << std::endl;
+
 }
 
 void SplashState::Update(float deltaTime) 
 {
 	m_timer += deltaTime;
-	if (m_timer > 3.0f) 
+	if (m_timer > 2.0f) 
 	{
-		m_app->GetGameStateManager()->SetState("Splash", nullptr);//unloads
-		m_app->GetGameStateManager()->PopState();
-		m_app->GetGameStateManager()->PushState("Menu");
+		m_app->GetGameStateManager()->SetState("Splash", nullptr);//sets splashstate to null - unloads it
+		m_app->GetGameStateManager()->PopState(); //pops state off
+		m_app->GetGameStateManager()->PushState("Menu"); //pushes a new state
 	}
 }
 
 void SplashState::Draw() 
 {
-	DrawText("Splash", 10, 10, 20, LIGHTGRAY);
+	DrawText("SplashState", 10, 12, 50, GRAY);
+	DrawText("Loading Assets PLEASE WAIT...", 10, 250, 25, GRAY);
 }

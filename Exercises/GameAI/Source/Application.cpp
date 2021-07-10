@@ -12,6 +12,9 @@
 #include "IGameState.h"
 #include "SplashState.h"
 #include "MenuState.h"
+#include "PlayState.h"
+#include "GraphState.h"
+
 
 Application::Application(int windowWidth, int windowHeight, const char* windowTitle) :
 	m_windowWidth(windowWidth),
@@ -31,11 +34,13 @@ void Application::Run()
 	InitWindow(m_windowWidth, m_windowHeight, m_windowTitle);
 	SetTargetFPS(60);
 
-m_gameStateManager = new GameStateManager();
-m_gameStateManager->SetState("Splash", new SplashState(this)); // Load();
-m_gameStateManager->SetState("Menu", new MenuState(this)); //Load();
- 
- m_gameStateManager->PushState("Splash");
+	m_gameStateManager = new GameStateManager();
+	m_gameStateManager->SetState("Splash", new SplashState(this)); // Load();
+	m_gameStateManager->SetState("Menu", new MenuState(this)); 
+	m_gameStateManager->SetState("Play", new PlayState(this));
+	m_gameStateManager->SetState("Graph", new GraphState(this));
+
+	m_gameStateManager->PushState("Splash");
 
 	//loading in assets
 	Load();
@@ -63,8 +68,8 @@ void Application::Load()
 	//m_player1->SetBehaviour ( new SeekBehaviour()) ;
 	//m_player->SetBehaviour ( new Fleeboardbehaviour()) ;
 
-	m_graph = new Graph2D(); 
-	
+	m_graph = new Graph2D();
+
 	int numRows = 4;
 	int numCols = 6;
 	float xOffSet = 100;
@@ -72,12 +77,12 @@ void Application::Load()
 	float spacing = 50;
 
 	for (int y = 0; y < numRows; y++) {
-		 for (int x = 0; x < numCols; x++) {
+		for (int x = 0; x < numCols; x++) {
 			m_graph->AddNode({
 				x * spacing + xOffSet,
 				y * spacing + yOffSet
 				});
-		 }
+		}
 	}
 
 	for (auto node : m_graph->GetNodes())
@@ -85,7 +90,7 @@ void Application::Load()
 		std::vector<Graph2D::Node*> nearbyNodes;
 		m_graph->GetNearbyNodes(node->data, 60, nearbyNodes);
 
-		for(auto conncetedNode : nearbyNodes)
+		for (auto conncetedNode : nearbyNodes)
 		{
 			if (conncetedNode == node)
 				continue;
@@ -137,10 +142,6 @@ void Application::Draw()
 	m_gameStateManager->Draw();
 	//m_player1->Draw();
 	//m_graphEditor->Draw();
-
-	DrawText("Ben's Raylib Thingy!", m_windowWidth / 4, 10, 40, GRAY);
-
-	if (IsKeyDown(KEY_SPACE)) DrawText("Big Boom", 250, 200, 80, ORANGE); // just ignore this haha :)
 
 	EndDrawing();
 }

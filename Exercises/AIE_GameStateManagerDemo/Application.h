@@ -1,5 +1,4 @@
 #pragma once
-#pragma once
 
 //-Forward Declare / pre declare
 class IGameState;
@@ -9,7 +8,7 @@ class Application {
 
 public:
 
-	Application(int windowWidth, int windowHeight, const char* windowTitle);
+	Application(int windowWidth, int windowHeight);
 	~Application();
 
 	void Run();
@@ -20,7 +19,9 @@ public:
 	void Update(float deltaTime);
 	void Draw();
 
-	GameStateManager* GetGameStateManager();
+	GameStateManager* GetGameStateManager() {
+		return m_gameStateManager;
+	}
 
 
 
@@ -31,7 +32,7 @@ private:
 
 	int m_windowWidth;
 	int m_windowHeight;
-	const char* m_windowTitle;
+	
 
 
 	GameStateManager* m_gameStateManager = nullptr;

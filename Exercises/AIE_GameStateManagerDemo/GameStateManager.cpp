@@ -42,6 +42,7 @@ void GameStateManager::Draw()
 		state->Draw();
 	}
 }
+
 void GameStateManager::SetState(const char* name, IGameState* state)
 {
 	m_commands.push_back([=]() {
@@ -60,15 +61,33 @@ void GameStateManager::SetState(const char* name, IGameState* state)
 
 		});
 }
+
 void GameStateManager::PushState(const char* name)
 {
 	m_commands.push_back([=]() {
 		m_stack.push_back(m_states[name]);
 		});
 }
+
 void GameStateManager::PopState()
 {
 	m_commands.push_back([=]() {
 		m_stack.pop_back();
 		});
 }
+
+
+
+//TODO:
+
+//- CREATE a "PLAY" state
+// - create a "pause" state
+// - create a "score" state
+
+//when we press 'space' on the menu state - change state to play
+//when we press p on the play state - push_state('pause');
+//when we press the 'p' on the pause state - pop the pause state from the stack
+
+//Challange see if you can update the game state manager so that only the 'top' state is updating
+
+//all states should draw.   ...//blocking others from drawing 

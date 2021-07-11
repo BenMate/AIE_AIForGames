@@ -4,13 +4,13 @@
 
 class Application;
 
-class MenuState : public IGameState
+class DemoOne : public IGameState
 {
 
 public:
 
-	MenuState(Application *app);
-	virtual ~MenuState();
+	DemoOne(Application* app);
+	virtual ~DemoOne();
 
 	virtual void Load();
 	virtual void Unload();

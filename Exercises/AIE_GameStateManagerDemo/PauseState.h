@@ -1,22 +1,16 @@
 #pragma once
 
-#include "GameObject.h"
 #include "IGameState.h"
-
-
-class KeyBoardBehaviour;
-class SeekBehaviour;
-class FleeBehaviour;
 
 class Application;
 
-class PlayState : public IGameState
+class PauseState : public IGameState
 {
 
 public:
 
-	PlayState(Application* app);
-	virtual ~PlayState();
+	PauseState(Application* app);
+	virtual ~PauseState();
 
 	virtual void Load();
 	virtual void Unload();

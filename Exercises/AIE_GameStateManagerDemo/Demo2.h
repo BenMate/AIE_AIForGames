@@ -4,13 +4,13 @@
 
 class Application;
 
-class GraphState : public IGameState
+class DemoTwo : public IGameState
 {
 
 public:
 
-	GraphState(Application* app);
-	virtual ~GraphState();
+	DemoTwo(Application* app);
+	virtual ~DemoTwo();
 
 	virtual void Load();
 	virtual void Unload();

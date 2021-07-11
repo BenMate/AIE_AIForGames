@@ -171,17 +171,12 @@
     <ClCompile Include="Source\Application.cpp" />
     <ClCompile Include="Source\FleeBehaviour.cpp" />
     <ClCompile Include="Source\GameObject.cpp" />
-    <ClCompile Include="Source\GameStateManager.cpp" />
     <ClCompile Include="Source\Graph2D.cpp" />
     <ClCompile Include="Source\Graph2DEditor.cpp" />
-    <ClCompile Include="Source\GraphState.cpp" />
     <ClCompile Include="Source\KeyBoardBehaviour.cpp" />
     <ClCompile Include="Source\main.cpp" />
-    <ClCompile Include="Source\MenuState.cpp" />
-    <ClCompile Include="Source\PlayState.cpp" />
     <ClCompile Include="Source\Player.cpp" />
     <ClCompile Include="Source\SeekBehaviour.cpp" />
-    <ClCompile Include="Source\SplashState.cpp" />
     <ClCompile Include="Source\WonderBehvaviour.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -189,18 +184,13 @@
     <ClInclude Include="Inc\Behaviour.h" />
     <ClInclude Include="Inc\FleeBehaviour.h" />
     <ClInclude Include="Inc\GameObject.h" />
-    <ClInclude Include="Inc\GameStateManager.h" />
     <ClInclude Include="Inc\Graph.h" />
     <ClInclude Include="Inc\Graph2D.h" />
     <ClInclude Include="Inc\Graph2DEditor.h" />
-    <ClInclude Include="Inc\GraphState.h" />
     <ClInclude Include="Inc\IGameState.h" />
     <ClInclude Include="Inc\KeyBoardBehaviour.h" />
-    <ClInclude Include="Inc\MenuState.h" />
-    <ClInclude Include="Inc\PlayState.h" />
     <ClInclude Include="Inc\Player.h" />
     <ClInclude Include="Inc\SeekBehaviour.h" />
-    <ClInclude Include="Inc\SplashState.h" />
     <ClInclude Include="Inc\WonderBehaviour.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

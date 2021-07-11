@@ -42,7 +42,6 @@ void TestGraph() {
 	for (auto n : path) {        
 		std::cout << n->data << std::endl;
 	}
-
 }
 
 

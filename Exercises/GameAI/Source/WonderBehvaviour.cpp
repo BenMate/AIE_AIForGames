@@ -13,7 +13,6 @@ WonderBehavior::~WonderBehavior()
 
 }
 
-
 void WonderBehavior::Update(GameObject* obj, float deltaTime)
 {
 

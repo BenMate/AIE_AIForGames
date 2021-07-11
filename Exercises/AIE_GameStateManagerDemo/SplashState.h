@@ -1,6 +1,7 @@
 #pragma once
 
 #include "IGameState.h"
+
 class Application;
 
 class SplashState : public IGameState

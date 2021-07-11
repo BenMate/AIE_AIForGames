@@ -1,16 +1,18 @@
 #include "Application.h"
-#include "raygui.h"
+
+#include "raylib.h"
 
 #include "GameStateManager.h"
 #include "IGameState.h"
 
 #include "SplashState.h"
 #include "MenuState.h"
+#include "Demo1.h"
+#include "Demo2.h"
+#include "PauseState.h"
 
-Application::Application(int windowWidth, int windowHeight, const char* windowTitle) :
-	m_windowWidth(windowWidth),
-	m_windowHeight(windowHeight),
-	m_windowTitle(windowTitle)
+
+Application::Application(int windowWidth, int windowHeight) : m_windowWidth(windowWidth), m_windowHeight(windowHeight)	
 {
 
 }
@@ -22,12 +24,16 @@ Application::~Application()
 
 void Application::Run()
 {
-	InitWindow(m_windowWidth, m_windowHeight, m_windowTitle);
+	InitWindow(m_windowWidth, m_windowHeight, "AIE Game state Manager");
 	SetTargetFPS(60);
 
 	m_gameStateManager = new GameStateManager();
+
 	m_gameStateManager->SetState("Splash", new SplashState(this)); // Load();
-	m_gameStateManager->SetState("Menu", new MenuState(this)); //Load();
+	m_gameStateManager->SetState("Menu", new MenuState(this)); 
+	m_gameStateManager->SetState("Play", new DemoOne(this));
+	m_gameStateManager->SetState("Graph", new DemoTwo(this));
+	m_gameStateManager->SetState("Pause", new PauseState(this));
 
 	m_gameStateManager->PushState("Splash");
 
@@ -47,11 +53,11 @@ void Application::Run()
 
 	//de-Initialization
 	CloseWindow();
+	
 }
 
 void Application::Load()
 {
-	
 
 }
 
@@ -76,12 +82,12 @@ void Application::Draw()
 
 	DrawText("Ben's Demo", m_windowWidth / 4, 10, 40, GRAY);
 
-	if (IsKeyDown(KEY_SPACE)) DrawText("Big Boom", 250, 200, 80, ORANGE); // just ignore this haha :)
-
 	EndDrawing();
 }
 
 
-GameStateManager* Application::GetGameStateManager() {
-	return m_gameStateManager;
-}
+
+
+//make demo 1 the graph stuff
+
+//make demo 2 the follow path

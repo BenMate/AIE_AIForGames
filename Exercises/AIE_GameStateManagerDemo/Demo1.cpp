@@ -1,6 +1,9 @@
 #include "Demo1.h"
 #include "raylib.h"
 
+#include "Application.h"
+#include "GameStateManager.h"
+
 #include <iostream>
 
 DemoOne::DemoOne(Application* app) : m_app(app)
@@ -27,7 +30,10 @@ void DemoOne::Unload()
 
 void DemoOne::Update(float deltaTime)
 {
-
+	if (IsKeyPressed(KEY_SPACE))
+	{
+		m_app->GetGameStateManager()->PushState("Pause");
+	}
 
 }
 

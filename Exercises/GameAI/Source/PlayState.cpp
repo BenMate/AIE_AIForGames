@@ -1,48 +1,49 @@
-#include "Demo1.h"
+#include "PlayState.h"
 #include "raylib.h"
+#include "Player.h"
 
 #include "Application.h"
 #include "GameStateManager.h"
 
 #include <iostream>
 
-DemoOne::DemoOne(Application* app) : m_app(app)
+PlayState::PlayState(Application* app) : m_app(app)
 {
 
 
 }
 
-DemoOne::~DemoOne()
+PlayState::~PlayState()
 {
 
 }
 
 
-void DemoOne::Load()
+void PlayState::Load()
 {
 	std::cout << "Loading DemoOne" << std::endl;
 }
 
-void DemoOne::Unload()
+void PlayState::Unload()
 {
 	std::cout << "Unloading DemoOne" << std::endl;
 }
 
-void DemoOne::Update(float deltaTime)
+void PlayState::Update(float deltaTime)
 {
-	// only update if we are the top most state
-	auto currentState = m_app->GetGameStateManager()->GetCurrentState();
-	if (currentState != this)
-		return;
-
 	if (IsKeyPressed(KEY_SPACE))
 	{
 		m_app->GetGameStateManager()->PushState("Pause");
 	}
 
+	m_player1->Update(deltaTime);
+
+
 }
 
-void DemoOne::Draw()
+void PlayState::Draw()
 {
 	DrawText("Play", 10, 100, 20, GRAY);
+
+	m_player1->Draw();
 }

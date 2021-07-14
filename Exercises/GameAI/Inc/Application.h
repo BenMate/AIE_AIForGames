@@ -7,7 +7,7 @@ class Graph2D;
 class Graph2DEditor;
 
 class IGameState;
-
+class GameStateManager;
 
 class Application {
 
@@ -24,7 +24,9 @@ public:
 	void Update(float deltaTime);
 	void Draw();
 
-
+	GameStateManager* GetGameStateManager() {
+		return m_gameStateManager;
+	}
 
 protected:
 
@@ -39,6 +41,6 @@ private:
 	Graph2DEditor* m_graphEditor = nullptr;
 	Graph2D* m_graph = nullptr;
 
-
+	GameStateManager* m_gameStateManager = nullptr;
 
 };

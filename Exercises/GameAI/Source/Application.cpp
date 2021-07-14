@@ -1,4 +1,5 @@
 #include "Application.h"
+
 #include "raygui.h"
 #include "Player.h"
 
@@ -7,6 +8,12 @@
 
 #include "Graph2D.h"
 #include "Graph2DEditor.h"
+
+#include "GameStateManager.h"
+#include "IGameState.h"
+
+#include "MenuState.h"
+#include "PlayState.h"
 
 #include "IGameState.h"
 

@@ -21,7 +21,7 @@ public:
 	void PushState(const char* name);
 	void PopState();
 
-	IGameState* GetCurrentState();
+
 
 protected:
 

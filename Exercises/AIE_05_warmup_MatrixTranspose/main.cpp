@@ -42,11 +42,13 @@ int main(int argc, char** argv)
         {2,2,2},
         {3,3,3},
     };
+
     std::vector<std::vector<float>> matB = {
         {5,5},
         {6,7},
         {9,1},
     };
+
     PrintMatrix(matA);
     matA = TransposeMatrix(matA);
     PrintMatrix(matA);

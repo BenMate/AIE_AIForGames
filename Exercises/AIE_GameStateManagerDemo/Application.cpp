@@ -36,6 +36,7 @@ void Application::Run()
 	m_gameStateManager->SetState("Pause", new PauseState(this));
 
 	m_gameStateManager->PushState("Splash");
+	
 
 	//loading in assets
 	Load();

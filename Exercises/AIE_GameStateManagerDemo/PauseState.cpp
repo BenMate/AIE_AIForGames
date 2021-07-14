@@ -33,9 +33,6 @@ void PauseState::Update(float deltaTime)
 	if (IsKeyPressed(KEY_SPACE))
 	{
 		m_app->GetGameStateManager()->PopState();
-		//how to actually pop the state off
-
-
 	}
 }
 

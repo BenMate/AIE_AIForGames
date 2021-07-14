@@ -57,49 +57,49 @@ void Application::Run()
 
 void Application::Load()
 {
-	m_player1 = new Player();
-	m_player1->SetPosition({ m_windowWidth * 0.25f , m_windowHeight / 2.0f });
-	m_player1->SetFriction(1.0f);
+	//m_player1 = new Player();
+	//m_player1->SetPosition({ m_windowWidth * 0.25f , m_windowHeight / 2.0f });
+	//m_player1->SetFriction(1.0f);
 
 	//m_player1->SetBehaviour ( new SeekBehaviour()) ; // can tell it to always be in flee or seek
 	//m_player->SetBehaviour ( new Fleeboardbehaviour()) ;
 
-	//m_graph = new Graph2D();
+	m_graph = new Graph2D();
 
-	//int numRows = 4;
-	//int numCols = 6;
-	//float xOffSet = 100;
-	//float yOffSet = 100;
-	//float spacing = 50;
+	int numRows = 4;
+	int numCols = 6;
+	float xOffSet = 100;
+	float yOffSet = 100;
+	float spacing = 50;
 
-	//for (int y = 0; y < numRows; y++) {
-	//	for (int x = 0; x < numCols; x++) {
-	//		m_graph->AddNode({
-	//			x * spacing + xOffSet,
-	//			y * spacing + yOffSet
-	//			});
-	//	}
-	//}
+	for (int y = 0; y < numRows; y++) {
+		for (int x = 0; x < numCols; x++) {
+			m_graph->AddNode({
+				x * spacing + xOffSet,
+				y * spacing + yOffSet
+				});
+		}
+	}
 
-	//for (auto node : m_graph->GetNodes())
-	//{
-	//	std::vector<Graph2D::Node*> nearbyNodes;
-	//	m_graph->GetNearbyNodes(node->data, 60, nearbyNodes);
+	for (auto node : m_graph->GetNodes())
+	{
+		std::vector<Graph2D::Node*> nearbyNodes;
+		m_graph->GetNearbyNodes(node->data, 60, nearbyNodes);
 
-	//	for (auto conncetedNode : nearbyNodes)
-	//	{
-	//		if (conncetedNode == node)
-	//			continue;
+		for (auto conncetedNode : nearbyNodes)
+		{
+			if (conncetedNode == node)
+				continue;
 
-	//		float dist = Vector2Distance(node->data, conncetedNode->data);
-	//		m_graph->AddEdge(node, conncetedNode, dist);
-	//		m_graph->AddEdge(conncetedNode, node, dist);
-	//	}
+			float dist = Vector2Distance(node->data, conncetedNode->data);
+			m_graph->AddEdge(node, conncetedNode, dist);
+			m_graph->AddEdge(conncetedNode, node, dist);
+		}
 
-	//}
+	}
 
-	//m_graphEditor = new Graph2DEditor();
-	//m_graphEditor->SetGraph(m_graph);
+	m_graphEditor = new Graph2DEditor();
+	m_graphEditor->SetGraph(m_graph);
 }
 
 void Application::UnLoad()
@@ -119,9 +119,9 @@ void Application::UnLoad()
 
 void Application::Update(float deltaTime)
 {
-	m_player1->Update(deltaTime);
+	//m_player1->Update(deltaTime);
 
-	//m_graphEditor->Update(deltaTime);
+	m_graphEditor->Update(deltaTime);
 
 }
 
@@ -132,8 +132,8 @@ void Application::Draw()
 	ClearBackground(RAYWHITE);
 
 	
-	m_player1->Draw();
-	//m_graphEditor->Draw();
+	//m_player1->Draw();
+	m_graphEditor->Draw();
 
 	EndDrawing();
 }

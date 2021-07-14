@@ -27,6 +27,8 @@ void DemoOne::Load()
 {
 	std::cout << "Loading DemoOne" << std::endl;
 
+	delete m_player;
+
 	m_player = new Player();
 	m_player->SetPosition({ 800 * 0.25f , 600 / 2.0f }); //hard coded for now
 	m_player->SetFriction(1.0f);
@@ -43,16 +45,13 @@ void DemoOne::Unload()
 
 void DemoOne::Update(float deltaTime)
 {
-
-
 	// only update if we are the top most state
 	auto currentState = m_app->GetGameStateManager()->GetCurrentState();
 	if (currentState != this)
 		return;
 
 	if (IsKeyPressed(KEY_SPACE)) m_app->GetGameStateManager()->PushState("Pause");
-	
-		
+
 	if (IsKeyPressed(KEY_M)) 
 	{
 		m_app->GetGameStateManager()->SetState("Menu", new MenuState(m_app));
@@ -67,7 +66,6 @@ void DemoOne::Draw()
 {
 	DrawText("Play", 10, 00, 50, GRAY);
 	DrawText("Press 'M' to go back to Menu", 10, 100, 20, GRAY);
-
 
 	m_player->Draw();
 }

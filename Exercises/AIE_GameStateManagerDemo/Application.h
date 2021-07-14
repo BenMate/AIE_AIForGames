@@ -6,6 +6,8 @@ class GameObject;
 class IGameState;
 class GameStateManager;
 
+class Player;
+
 class Application {
 
 public:
@@ -25,9 +27,6 @@ public:
 		return m_gameStateManager;
 	}
 
-
-
-
 protected:
 
 private:
@@ -36,8 +35,8 @@ private:
 	int m_windowHeight;
 	
 
-	GameObject* m_player1 = nullptr;
-
+	
 	GameStateManager* m_gameStateManager = nullptr;
-
+	
+	Player* m_player = nullptr;
 };

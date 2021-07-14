@@ -162,6 +162,9 @@
     <ClInclude Include="FleeBehaviour.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameStateManager.h" />
+    <ClInclude Include="Graph.h" />
+    <ClInclude Include="Graph2D.h" />
+    <ClInclude Include="Graph2DEditor.h" />
     <ClInclude Include="IGameState.h" />
     <ClInclude Include="KeyBoardBehaviour.h" />
     <ClInclude Include="MenuState.h" />
@@ -177,6 +180,8 @@
     <ClCompile Include="FleeBehaviour.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameStateManager.cpp" />
+    <ClCompile Include="Graph2D.cpp" />
+    <ClCompile Include="Graph2DEditor.cpp" />
     <ClCompile Include="KeyBoardBehaviour.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MenuState.cpp" />

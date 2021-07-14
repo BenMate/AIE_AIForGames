@@ -4,6 +4,11 @@
 
 class Application;
 
+class Graph2D;
+class Graph2DEditor;
+class GameStateManager;
+
+
 class DemoTwo : public IGameState
 {
 
@@ -24,5 +29,11 @@ protected:
 private:
 
 	Application* m_app;
+
+	GameStateManager* m_gameStateManager = nullptr;
+
+
+	Graph2DEditor* m_graphEditor = nullptr;
+	Graph2D* m_graph = nullptr;
 
 };

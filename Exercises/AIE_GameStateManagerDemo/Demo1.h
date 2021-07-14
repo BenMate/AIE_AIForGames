@@ -2,6 +2,7 @@
 
 #include "IGameState.h"
 
+class GameStateManager;
 class Application;
 class Player;
 
@@ -26,5 +27,9 @@ private:
 
 	Application* m_app;
 
-	Player* m_player;
+	
+	GameStateManager* m_gameStateManager = nullptr;
+
+	Player* m_player = nullptr;
+
 };

@@ -8,9 +8,9 @@ Player::Player()
 	m_KbBehaviour = new KeyBoardBehaviour();
 	m_seekBehaviour = new SeekBehaviour();
 	m_seekBehaviour->SetTargetRadius(50);
-	m_seekBehaviour->OnArrive([this](){
-			SetBehaviour(m_KbBehaviour);
-	});
+	m_seekBehaviour->OnArrive([this]() {
+		SetBehaviour(m_KbBehaviour);
+		});
 
 	m_FleeBehaviour = new FleeBehaviour();
 	m_FleeBehaviour->SetTargetRadius(200);
@@ -34,7 +34,7 @@ void Player::Update(float deltaTime)
 {
 	if (IsMouseButtonPressed(0)) //left click
 	{
-		m_seekBehaviour->SetTarget( GetMousePosition() );
+		m_seekBehaviour->SetTarget(GetMousePosition());
 		SetBehaviour(m_seekBehaviour);
 	}
 
@@ -44,7 +44,7 @@ void Player::Update(float deltaTime)
 		SetBehaviour(m_FleeBehaviour);
 	}
 
-	
+
 
 	GameObject::Update(deltaTime);
 }

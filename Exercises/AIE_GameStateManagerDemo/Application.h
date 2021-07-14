@@ -1,6 +1,8 @@
 #pragma once
 
 //-Forward Declare / pre declare
+class GameObject;
+
 class IGameState;
 class GameStateManager;
 
@@ -34,6 +36,7 @@ private:
 	int m_windowHeight;
 	
 
+	GameObject* m_player1 = nullptr;
 
 	GameStateManager* m_gameStateManager = nullptr;
 

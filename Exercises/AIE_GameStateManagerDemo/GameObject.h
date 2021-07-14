@@ -4,7 +4,7 @@
 
 class Behaviour;
 
-class GameObject 
+class GameObject
 {
 public:
 
@@ -22,7 +22,7 @@ public:
 	const float& GetFriction() const;
 	const float& GetMaxSpeed() const;
 	const float& GetMaxForce() const;
-	
+
 	//Setters
 	void SetPosition(const Vector2& pos);
 	void SetVelocity(const Vector2& vel);
@@ -34,7 +34,6 @@ public:
 	Behaviour* GetBehaviour();
 	void SetBehaviour(Behaviour* behaviour);
 
-
 protected:
 
 	Vector2 m_position = { 0.0f , 0.0f };
@@ -45,7 +44,7 @@ protected:
 	float m_maxForce = 0.0f;
 
 	Behaviour* m_behaviour = nullptr;
-	
+
 
 private:
 

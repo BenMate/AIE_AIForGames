@@ -44,11 +44,6 @@ void MenuState::Update(float deltaTime)
 		m_app->GetGameStateManager()->PushState("Graph");
 	}
 
-	if (IsKeyPressed(KEY_SPACE)) 
-	{
-		m_app->GetGameStateManager()->PushState("Pause");
-	}
-
 }
 
 void MenuState::Draw()
@@ -58,6 +53,5 @@ void MenuState::Draw()
 	DrawText("Press P to Play", 10, 200, 20, GRAY);
 	DrawText("Press G for Graphs ", 10, 250, 20, GRAY);
 
-	DrawText("Press Space to Pause", 10, 300, 20, GRAY);
 
 }

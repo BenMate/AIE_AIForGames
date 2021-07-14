@@ -61,7 +61,7 @@ void Application::Load()
 	m_player1->SetPosition({ m_windowWidth * 0.25f , m_windowHeight / 2.0f });
 	m_player1->SetFriction(1.0f);
 
-	//m_player1->SetBehaviour ( new SeekBehaviour()) ;
+	//m_player1->SetBehaviour ( new SeekBehaviour()) ; // can tell it to always be in flee or seek
 	//m_player->SetBehaviour ( new Fleeboardbehaviour()) ;
 
 	//m_graph = new Graph2D();

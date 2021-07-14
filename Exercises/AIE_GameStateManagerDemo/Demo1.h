@@ -3,6 +3,7 @@
 #include "IGameState.h"
 
 class Application;
+class Player;
 
 class DemoOne : public IGameState
 {
@@ -25,4 +26,5 @@ private:
 
 	Application* m_app;
 
+	Player* m_player;
 };

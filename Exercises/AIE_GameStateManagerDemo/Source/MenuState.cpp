@@ -54,11 +54,11 @@ void MenuState::Update(float deltaTime)
 
 void MenuState::Draw()
 {
-	DrawText("Menu", 10, 5, 50, GRAY);
+	DrawText("DemoMenu", 10, 5, 50, GRAY);
 
-	DrawText("Press 1 to Player Demo", 10, 200, 20, GRAY);
-	DrawText("Press 2 for Graphs ", 10, 250, 20, GRAY);
-	DrawText("Press P to Play Game", 10, 300, 20, DARKGRAY);
+	DrawText("Press 1 to Player Demo", 10, 50, 20, GRAY);
+	DrawText("Press 2 for Graphs ", 10, 100, 20, GRAY);
+	DrawText("Press P to Play Game", 10, 150, 20, DARKGRAY);
 
 
 }

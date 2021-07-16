@@ -39,5 +39,5 @@ void GameState::Update(float deltaTime)
 
 void GameState::Draw()
 {
-	DrawText("GameState", 10, 00, 50, GRAY);
+	DrawText("GameState", 10, 10, 20, GRAY);
 }

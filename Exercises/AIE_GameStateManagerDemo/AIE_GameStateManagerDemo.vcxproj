@@ -155,42 +155,43 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Application.h" />
-    <ClInclude Include="Behaviour.h" />
-    <ClInclude Include="Demo1.h" />
-    <ClInclude Include="Demo2.h" />
-    <ClInclude Include="FleeBehaviour.h" />
-    <ClInclude Include="Game.h" />
-    <ClInclude Include="GameObject.h" />
-    <ClInclude Include="GameStateManager.h" />
-    <ClInclude Include="Graph.h" />
-    <ClInclude Include="Graph2D.h" />
-    <ClInclude Include="Graph2DEditor.h" />
-    <ClInclude Include="IGameState.h" />
-    <ClInclude Include="KeyBoardBehaviour.h" />
-    <ClInclude Include="MenuState.h" />
-    <ClInclude Include="PauseState.h" />
-    <ClInclude Include="Player.h" />
-    <ClInclude Include="SeekBehaviour.h" />
-    <ClInclude Include="SplashState.h" />
+    <ClInclude Include="Inc\Application.h" />
+    <ClInclude Include="Inc\Behaviour.h" />
+    <ClInclude Include="Inc\Demo1.h" />
+    <ClInclude Include="Inc\Demo2.h" />
+    <ClInclude Include="Inc\FleeBehaviour.h" />
+    <ClInclude Include="Inc\Game.h" />
+    <ClInclude Include="Inc\GameObject.h" />
+    <ClInclude Include="Inc\GameStateManager.h" />
+    <ClInclude Include="Inc\Graph.h" />
+    <ClInclude Include="Inc\Graph2D.h" />
+    <ClInclude Include="Inc\Graph2DEditor.h" />
+    <ClInclude Include="Inc\IGameState.h" />
+    <ClInclude Include="Include\Application.h" />
+    <ClInclude Include="Inc\KeyBoardBehaviour.h" />
+    <ClInclude Include="Inc\MenuState.h" />
+    <ClInclude Include="Inc\PauseState.h" />
+    <ClInclude Include="Inc\Player.h" />
+    <ClInclude Include="Inc\SeekBehaviour.h" />
+    <ClInclude Include="Inc\SplashState.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Application.cpp" />
-    <ClCompile Include="Demo1.cpp" />
-    <ClCompile Include="Demo2.cpp" />
-    <ClCompile Include="FleeBehaviour.cpp" />
-    <ClCompile Include="Game.cpp" />
-    <ClCompile Include="GameObject.cpp" />
-    <ClCompile Include="GameStateManager.cpp" />
-    <ClCompile Include="Graph2D.cpp" />
-    <ClCompile Include="Graph2DEditor.cpp" />
-    <ClCompile Include="KeyBoardBehaviour.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="MenuState.cpp" />
-    <ClCompile Include="PauseState.cpp" />
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="SeekBehaviour.cpp" />
-    <ClCompile Include="SplashState.cpp" />
+    <ClCompile Include="Source\Application.cpp" />
+    <ClCompile Include="Source\Demo1.cpp" />
+    <ClCompile Include="Source\Demo2.cpp" />
+    <ClCompile Include="Source\FleeBehaviour.cpp" />
+    <ClCompile Include="Source\Game.cpp" />
+    <ClCompile Include="Source\GameObject.cpp" />
+    <ClCompile Include="Source\GameStateManager.cpp" />
+    <ClCompile Include="Source\Graph2D.cpp" />
+    <ClCompile Include="Source\Graph2DEditor.cpp" />
+    <ClCompile Include="Source\KeyBoardBehaviour.cpp" />
+    <ClCompile Include="Source\main.cpp" />
+    <ClCompile Include="Source\MenuState.cpp" />
+    <ClCompile Include="Source\PauseState.cpp" />
+    <ClCompile Include="Source\Player.cpp" />
+    <ClCompile Include="Source\SeekBehaviour.cpp" />
+    <ClCompile Include="Source\SplashState.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

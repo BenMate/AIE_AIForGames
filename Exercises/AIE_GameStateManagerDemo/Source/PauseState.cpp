@@ -38,5 +38,5 @@ void PauseState::Update(float deltaTime)
 
 void PauseState::Draw()
 {
-	DrawText("Paused...", 250, 100, 30, GRAY);
+	DrawText("Demo Paused..", 250, 250, 30, GRAY);
 }

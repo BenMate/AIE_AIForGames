@@ -29,7 +29,7 @@ void SplashState::Unload()
 void SplashState::Update(float deltaTime)
 {
 	m_timer += deltaTime;
-	if (m_timer > 2.0f)
+	if (m_timer > 3.0f)
 	{
 		m_app->GetGameStateManager()->SetState("Splash", nullptr);//unloads
 		m_app->GetGameStateManager()->PopState();
@@ -39,5 +39,11 @@ void SplashState::Update(float deltaTime)
 
 void SplashState::Draw()
 {
-	DrawText("Splash", 100, 150, 100, GRAY);
+	DrawText("SplashScreen", 10, 15, 25, GRAY);
+
+	DrawText("Loading...Program....", 10 ,100 , 20, GRAY);
+
+	if (m_timer > 1.9f) DrawText("Complete", 200, 100, 20, GRAY);
+	
+
 }

@@ -2,16 +2,17 @@
 
 #include "IGameState.h"
 
+class GameStateManager;
 class Application;
-class GameObject;
 
-class PlayState : public IGameState
+
+class GameState : public IGameState
 {
 
 public:
 
-	PlayState(Application* app);
-	virtual ~PlayState();
+	GameState(Application* app);
+	virtual ~GameState();
 
 	virtual void Load();
 	virtual void Unload();
@@ -26,5 +27,6 @@ private:
 
 	Application* m_app;
 
-	GameObject* m_player1 = nullptr;
+	GameStateManager* m_gameStateManager = nullptr;
+
 };

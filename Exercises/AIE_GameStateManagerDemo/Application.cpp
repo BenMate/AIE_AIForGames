@@ -7,9 +7,12 @@
 
 #include "SplashState.h"
 #include "MenuState.h"
+#include "PauseState.h"
+
 #include "Demo1.h"
 #include "Demo2.h"
-#include "PauseState.h"
+#include "Game.h"
+
 
 
 Application::Application(int windowWidth, int windowHeight) : m_windowWidth(windowWidth), m_windowHeight(windowHeight)	
@@ -34,6 +37,7 @@ void Application::Run()
 	m_gameStateManager->SetState("Play", new DemoOne(this));
 	m_gameStateManager->SetState("Graph", new DemoTwo(this));
 	m_gameStateManager->SetState("Pause", new PauseState(this));
+	m_gameStateManager->SetState("Game", new GameState(this));
 
 	m_gameStateManager->PushState("Splash");
 	
@@ -82,14 +86,5 @@ void Application::Draw()
 
 	m_gameStateManager->Draw();
 
-	DrawText("Ben's Demo", m_windowWidth / 4, 10, 40, GRAY);
-
 	EndDrawing();
 }
-
-
-
-
-//make demo 1 the graph stuff
-
-//make demo 2 the follow path

@@ -160,6 +160,7 @@
     <ClInclude Include="Demo1.h" />
     <ClInclude Include="Demo2.h" />
     <ClInclude Include="FleeBehaviour.h" />
+    <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameStateManager.h" />
     <ClInclude Include="Graph.h" />
@@ -178,6 +179,7 @@
     <ClCompile Include="Demo1.cpp" />
     <ClCompile Include="Demo2.cpp" />
     <ClCompile Include="FleeBehaviour.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameStateManager.cpp" />
     <ClCompile Include="Graph2D.cpp" />

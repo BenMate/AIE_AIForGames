@@ -9,14 +9,6 @@
 #include "Graph2D.h"
 #include "Graph2DEditor.h"
 
-#include "GameStateManager.h"
-#include "IGameState.h"
-
-#include "MenuState.h"
-#include "PlayState.h"
-
-#include "IGameState.h"
-
 
 
 Application::Application(int windowWidth, int windowHeight, const char* windowTitle) :

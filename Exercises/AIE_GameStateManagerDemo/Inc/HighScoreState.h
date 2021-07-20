@@ -2,15 +2,17 @@
 
 #include "IGameState.h"
 
+class GameStateManager;
 class Application;
 
-class SplashState : public IGameState
+
+class HighScoreState : public IGameState
 {
 
 public:
 
-	SplashState(Application* m_app);
-	virtual ~SplashState();
+	HighScoreState(Application* app);
+	virtual ~HighScoreState();
 
 	virtual void Load();
 	virtual void Unload();
@@ -25,6 +27,6 @@ private:
 
 	Application* m_app;
 
-	float m_timer = 0.0f;
+	GameStateManager* m_gameStateManager = nullptr;
 
 };

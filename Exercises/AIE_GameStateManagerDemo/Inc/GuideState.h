@@ -6,13 +6,13 @@ class GameStateManager;
 class Application;
 
 
-class GameState : public IGameState
+class GuideState : public IGameState
 {
 
 public:
 
-	GameState(Application* app);
-	virtual ~GameState();
+	GuideState(Application* app);
+	virtual ~GuideState();
 
 	virtual void Load();
 	virtual void Unload();

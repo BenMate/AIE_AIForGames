@@ -11,7 +11,7 @@
 int main(int argc, char** argv)
 {
 	{
-		Application app(800, 450);
+		Application app(1600, 900);
 		app.Run();
 	}
 	return 0;

@@ -93,6 +93,8 @@ void DemoTwo::Update(float deltaTime)
 
 void DemoTwo::Draw()
 {
-	DrawText("Graph", 10, 100, 20, GRAY);
+	DrawText("Demo 2", 10, 1, 50, GRAY);
+	DrawText("Press M to go back", 10, 50, 20, GRAY);
+	
 	m_graphEditor->Draw();
 }

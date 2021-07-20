@@ -2,18 +2,17 @@
 
 #include "IGameState.h"
 
-//being declared
 class GameStateManager;
 class Application;
-class Player;
 
-class DemoOne : public IGameState
+
+class GameOverState : public IGameState
 {
 
 public:
 
-	DemoOne(Application* app);
-	virtual ~DemoOne();
+	GameOverState(Application* app);
+	virtual ~GameOverState();
 
 	virtual void Load();
 	virtual void Unload();
@@ -21,16 +20,13 @@ public:
 	virtual void Update(float deltaTime);
 	virtual void Draw();
 
-protected:
 
+protected:
 
 private:
 
-	int m_windowHeight = 800;
-	int m_windowWidth = 600;
-
 	Application* m_app;
+
 	GameStateManager* m_gameStateManager = nullptr;
-	Player* m_player = nullptr;
 
 };

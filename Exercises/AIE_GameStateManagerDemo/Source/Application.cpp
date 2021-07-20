@@ -5,14 +5,16 @@
 #include "GameStateManager.h"
 #include "IGameState.h"
 
-#include "SplashState.h"
 #include "MenuState.h"
-#include "PauseState.h"
-
 #include "Demo1.h"
 #include "Demo2.h"
-#include "Game.h"
 
+#include "PauseState.h"
+#include "GameState.h"
+#include "GameMenuState.h"
+#include "GameOverState.h"
+#include "HighScoreState.h"
+#include "GuideState.h"
 
 
 Application::Application(int windowWidth, int windowHeight) : m_windowWidth(windowWidth), m_windowHeight(windowHeight)	
@@ -32,14 +34,22 @@ void Application::Run()
 
 	m_gameStateManager = new GameStateManager();
 
-	m_gameStateManager->SetState("Splash", new SplashState(this)); // Load();
+
+	//tests - graphs and behaviours
 	m_gameStateManager->SetState("Menu", new MenuState(this)); 
-	m_gameStateManager->SetState("Play", new DemoOne(this));
+	m_gameStateManager->SetState("Agent", new DemoOne(this));
 	m_gameStateManager->SetState("Graph", new DemoTwo(this));
 	m_gameStateManager->SetState("Pause", new PauseState(this));
-	m_gameStateManager->SetState("Game", new GameState(this));
 
-	m_gameStateManager->PushState("Splash");
+	//gamestates
+	m_gameStateManager->SetState("GameState", new GameState(this));
+	m_gameStateManager->SetState("GameMenu", new GameMenuState(this));
+	m_gameStateManager->SetState("GameOver", new GameOverState(this));
+	m_gameStateManager->SetState("HighScores", new HighScoreState(this));
+	m_gameStateManager->SetState("Guide", new GuideState(this));
+
+	//m_gameStateManager->PushState("Menu");
+	m_gameStateManager->PushState("Menu");
 	
 
 	//loading in assets
@@ -63,12 +73,13 @@ void Application::Run()
 
 void Application::Load()
 {
-	
+
 
 }
 
 void Application::UnLoad()
 {
+
 	delete m_gameStateManager;
 }
 
@@ -82,7 +93,7 @@ void Application::Draw()
 {
 	BeginDrawing();
 
-	ClearBackground(RAYWHITE);
+	ClearBackground(WHITE);
 
 	m_gameStateManager->Draw();
 

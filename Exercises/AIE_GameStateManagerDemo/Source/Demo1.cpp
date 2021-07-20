@@ -27,10 +27,10 @@ void DemoOne::Load()
 {
 	std::cout << "Loading DemoOne" << std::endl;
 
-	delete m_player;
+	
 
 	m_player = new Player();
-	m_player->SetPosition({ 800 * 0.25f , 600 / 2.0f }); //hard coded for now
+	m_player->SetPosition({ m_windowHeight * 0.25f , m_windowWidth / 2.0f }); 
 	m_player->SetFriction(1.0f);
 
 }
@@ -64,7 +64,7 @@ void DemoOne::Update(float deltaTime)
 
 void DemoOne::Draw()
 {
-	DrawText("Play", 10, 00, 50, GRAY);
+	DrawText("Demo 1", 10, 1, 50, GRAY);
 	DrawText("Press 'M' to go back to Menu", 10, 100, 20, GRAY);
 
 	m_player->Draw();

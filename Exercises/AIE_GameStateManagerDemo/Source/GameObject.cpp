@@ -19,6 +19,7 @@ void GameObject::Update(float deltaTime)
 
 	//m_velocity =+ m_acceleration * deltaTime; 
 	//m_position += m_velocity * deltaTime;
+
 	//AddForce(-m_velocity * m_friction); // adds friction
 
 	ApplyForce(Vector2Scale(Vector2Negate(m_velocity), m_friction));
@@ -34,12 +35,12 @@ void GameObject::Draw()
 		m_behaviour->Draw(this);
 
 	DrawCircle(m_position.x, m_position.y, 8, GRAY);
+
 	Vector2 heading = Vector2Add(m_position, m_velocity);
+
 	DrawLine(m_position.x, m_position.y, heading.x, heading.y, BLACK);
-
-	
-
 }
+
 
 void GameObject::ApplyForce(const Vector2& force)
 {

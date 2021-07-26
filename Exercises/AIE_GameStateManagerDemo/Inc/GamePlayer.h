@@ -21,6 +21,8 @@ protected:
 	KeyBoardBehaviour* m_KbBehaviour;
 	SeekBehaviour* m_seekBehaviour;
 	FleeBehaviour* m_FleeBehaviour;
+	//pathfind 
+	//wonder
 
 private:
 };

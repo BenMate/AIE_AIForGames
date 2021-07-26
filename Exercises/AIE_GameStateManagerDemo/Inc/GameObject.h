@@ -14,7 +14,7 @@ public:
 	virtual void Update(float deltaTime);
 	virtual void Draw();
 
-	void ApplyForce(const Vector2& force);
+	void ApplyForce(const Vector2& force); 
 
 	//Getters
 	const Vector2& GetPosition() const;
@@ -47,5 +47,7 @@ protected:
 
 
 private:
+
+
 
 };

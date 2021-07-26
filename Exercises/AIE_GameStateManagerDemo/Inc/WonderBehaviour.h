@@ -4,13 +4,13 @@
 #include "raymath.h"
 #include <functional>
 
-class WonderBehaviour : public Behaviour
+class WanderBehaviour : public Behaviour
 {
 public:
 
-	WonderBehaviour();
+	WanderBehaviour();
 
-	virtual ~WonderBehaviour();
+	virtual ~WanderBehaviour();
 
 	virtual void Update(GameObject* obj, float deltaTime);
 	virtual void Draw(GameObject* obj);
@@ -26,7 +26,12 @@ public:
 protected:
 
 	Vector2 m_target;
+	Vector2 WanderCentre;
+	Vector2 m_wanderCenter;
+	Vector2 m_wanderPoint;
+
 	float m_targetRadius = 1.0f;
+
 	std::function<void()> m_onArriveFn;
 
 private:

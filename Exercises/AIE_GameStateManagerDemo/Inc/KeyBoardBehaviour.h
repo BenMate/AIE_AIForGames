@@ -23,5 +23,6 @@ protected:
 	int m_BigboomKey;
 
 	float m_moveForce = 0.0f;
+
 private:
 };

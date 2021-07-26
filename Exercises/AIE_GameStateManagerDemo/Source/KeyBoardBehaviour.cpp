@@ -11,7 +11,7 @@ KeyBoardBehaviour::KeyBoardBehaviour() : Behaviour() //constructor of derived cl
 	m_upKey = KEY_W; m_downKey = KEY_S;
 	m_leftKey = KEY_A; m_rightKey = KEY_D;
 
-	m_moveForce = 500;
+	m_moveForce = 100;
 }
 
 KeyBoardBehaviour::KeyBoardBehaviour(int upKey, int downKey, int leftKey, int rightKey, float moveForce) : Behaviour(),

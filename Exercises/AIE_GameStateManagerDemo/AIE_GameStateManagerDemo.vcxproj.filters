@@ -9,11 +9,11 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="Header Files\Game">
-      <UniqueIdentifier>{b15f449e-ce42-4941-a8e4-507b47dd515a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Game">
       <UniqueIdentifier>{8a45362f-7290-44d2-8d6d-1d6d132c4250}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game">
+      <UniqueIdentifier>{b15f449e-ce42-4941-a8e4-507b47dd515a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -89,6 +89,12 @@
     <ClInclude Include="Inc\GamePlayer.h">
       <Filter>Header Files\Game</Filter>
     </ClInclude>
+    <ClInclude Include="Inc\MainCharacter.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\GoblinWanderer.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Application.cpp">
@@ -155,6 +161,12 @@
       <Filter>Source Files\Game</Filter>
     </ClCompile>
     <ClCompile Include="Source\GamePlayer.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\MainCharacter.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GoblinWanderer.cpp">
       <Filter>Source Files\Game</Filter>
     </ClCompile>
   </ItemGroup>

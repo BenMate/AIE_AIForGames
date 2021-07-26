@@ -6,14 +6,14 @@
 class MyAssets 
 {
 public:
-	//declare Assets
+	
 
 	//Images
 	//--------------------------------------------------
 	static Texture2D worldBG;
 	static Texture2D colourBG;
 
-	static Texture2D player;
+	static Texture2D playerCharacter;
 	static Texture2D chest;
 	static Texture2D goblin;
 
@@ -24,6 +24,8 @@ public:
 
 	static void LoadAssets();
 	static void UnLoadAssets();
+
+	static unsigned int GetImagePixel(Image img, int xPos, int yPos);
 
 
 protected:

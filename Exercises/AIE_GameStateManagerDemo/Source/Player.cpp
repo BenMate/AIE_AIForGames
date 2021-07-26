@@ -7,12 +7,14 @@ Player::Player()
 {
 	m_KbBehaviour = new KeyBoardBehaviour();
 	m_seekBehaviour = new SeekBehaviour();
+
 	m_seekBehaviour->SetTargetRadius(50);
 	m_seekBehaviour->OnArrive([this]() {
 		SetBehaviour(m_KbBehaviour);
 		});
 
 	m_FleeBehaviour = new FleeBehaviour();
+
 	m_FleeBehaviour->SetTargetRadius(200);
 	m_FleeBehaviour->OnArrive([this]() {
 		SetBehaviour(m_KbBehaviour);
@@ -51,6 +53,5 @@ void Player::Update(float deltaTime)
 
 void Player::Draw()
 {
-
 	GameObject::Draw();
 }

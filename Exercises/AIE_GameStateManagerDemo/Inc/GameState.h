@@ -2,10 +2,11 @@
 
 #include "IGameState.h"
 #include "raylib.h"
-#include "list"
+#include <list>
 
 class GameStateManager;
 class Application;
+class MainCharacter;
 
 class Graph2DEditor;
 class Graph2D;
@@ -21,21 +22,23 @@ public:
 
 	virtual void Load();
 	virtual void Unload();
-
 	virtual void Update(float deltaTime);
 	virtual void Draw();
 
-	GameObject* CreateChest(Vector2 pos);
+	//GameObject* CreateChest(Vector2 pos);
 	GameObject* CreatePlayer(Vector2 pos);
-
-	void UpdateGameCamera(float deltaTime);
+	//GameObject* CreateGoblin(Vector2 pos);
 
 	void DrawDebugGraph();
 	void BuildGraphMap();
 
-	unsigned int GetImagePixel(Image img, int xPos, int yPos);
-
+	void UpdateGameCamera(float deltaTime);
 	bool IsInCameraView(Vector2 pos);
+
+	void UpdateColRec();
+	void DrawColRec();
+
+
 
 protected:
 
@@ -47,7 +50,8 @@ private:
 
 	Camera2D m_camera;
 
-	std::list<GameObject*> m_player;
 	std::list<GameObject*> m_chest;
+	std::list<GameObject*> m_goblin;
 
+	MainCharacter* m_mainCharacter = nullptr;
 };

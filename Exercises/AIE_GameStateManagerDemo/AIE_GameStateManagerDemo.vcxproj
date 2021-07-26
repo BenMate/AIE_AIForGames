@@ -159,6 +159,7 @@
     <ClInclude Include="Inc\GameMenuState.h" />
     <ClInclude Include="Inc\GameOverState.h" />
     <ClInclude Include="Inc\GamePlayer.h" />
+    <ClInclude Include="Inc\GoblinWanderer.h" />
     <ClInclude Include="Inc\GuideState.h" />
     <ClInclude Include="Inc\HighScoreState.h" />
     <ClInclude Include="Inc\Application.h" />
@@ -179,8 +180,11 @@
     <ClInclude Include="Inc\Player.h" />
     <ClInclude Include="Inc\SeekBehaviour.h" />
     <ClInclude Include="Inc\WonderBehaviour.h" />
+    <ClInclude Include="Inc\MainCharacter.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\GoblinWanderer.cpp" />
+    <ClCompile Include="Source\MainCharacter.cpp" />
     <ClCompile Include="Source\GamePlayer.cpp" />
     <ClCompile Include="Source\Assets.cpp" />
     <ClCompile Include="Source\GameMenuState.cpp" />

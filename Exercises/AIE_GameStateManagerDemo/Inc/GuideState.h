@@ -26,7 +26,6 @@ protected:
 private:
 
 	Application* m_app;
-
 	GameStateManager* m_gameStateManager = nullptr;
-
+	
 };

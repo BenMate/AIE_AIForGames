@@ -23,21 +23,24 @@ MainCharacter::~MainCharacter()
 void MainCharacter::Update(float deltaTime)
 {
 	GameObject::Update(deltaTime);
+
+	UpdatePlayerWallCollision(deltaTime);
 }
 
 void MainCharacter::Draw()
 {
-	DrawTexture(MyAssets::playerCharacter, m_position.x, m_position.y, WHITE);
+	Rectangle PlayersourceRec = { 0.0f ,0.0f ,32.0f ,32.0f };
+	Rectangle PlayerdestRec = { m_position.x, m_position.y, 32.0f ,32.0f };
+	Vector2 Playerorigin = {16,16};
 
-	//DrawTexturePro()
+	DrawTexturePro(MyAssets::playerCharacter, PlayersourceRec, PlayerdestRec, Playerorigin, 0.0f, WHITE);
 
 	GameObject::Draw();
-
 }
 
-void MainCharacter::UpdatePlayerWallCollision()
+void MainCharacter::UpdatePlayerWallCollision(float deltaTime)
 {
-	int tilesize = 8; // 8 so you can fit through small gaps
+	int tilesize = 8;
 	auto playerPos = GetPosition();
 
 	auto LeftColor = MyAssets::GetImagePixel(MyAssets::colourBGRaw, playerPos.x - tilesize, playerPos.y);
@@ -47,26 +50,26 @@ void MainCharacter::UpdatePlayerWallCollision()
 
 	if (LeftColor == 0xFF000000)
 	{
-		ApplyForce({ GetMaxForce(), 0.0f });
+		ApplyForce({ GetMaxForce(), 0.2f });
 		SetVelocity({ 0.0f, GetVelocity().y });
 	}
 
 	if (rightColor == 0xFF000000)
 	{
-		ApplyForce({ GetMaxForce(), 0.0f });
+		ApplyForce({ -GetMaxForce(), 0.2f });
 		SetVelocity({ 0.0f, GetVelocity().y });
 	}
 
 	if (TopColor == 0xFF000000)
 	{
-		ApplyForce({ GetMaxForce(), 0.0f });
+		ApplyForce({ 0.2f, GetMaxForce() });
 		SetVelocity({ GetVelocity().x, 0.0f });
 	}
 
 	if (BottomColor == 0xFF000000) 
 	{
-		ApplyForce({ GetMaxForce(), 0.0f });
+		ApplyForce({ 0.2f, -GetMaxForce() });;
 		SetVelocity({ GetVelocity().x, 0.0f });
 	}
-	//doesnt work
+	
 }

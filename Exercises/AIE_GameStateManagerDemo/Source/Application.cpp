@@ -13,7 +13,6 @@
 #include "GameState.h"
 #include "GameMenuState.h"
 #include "GameOverState.h"
-#include "HighScoreState.h"
 #include "GuideState.h"
 
 
@@ -34,7 +33,6 @@ void Application::Run()
 
 	m_gameStateManager = new GameStateManager();
 
-
 	//tests - graphs and behaviours
 	m_gameStateManager->SetState("Menu", new MenuState(this)); 
 	m_gameStateManager->SetState("Agent", new DemoOne(this));
@@ -45,11 +43,10 @@ void Application::Run()
 	m_gameStateManager->SetState("GameState", new GameState(this));
 	m_gameStateManager->SetState("GameMenu", new GameMenuState(this));
 	m_gameStateManager->SetState("GameOver", new GameOverState(this));
-	m_gameStateManager->SetState("HighScores", new HighScoreState(this));
 	m_gameStateManager->SetState("Guide", new GuideState(this));
 
-	//m_gameStateManager->PushState("Menu");
-	m_gameStateManager->PushState("Menu");
+	//stats the app on gamemenu
+	m_gameStateManager->PushState("GameMenu");
 	
 
 	//loading in assets
@@ -73,7 +70,7 @@ void Application::Run()
 
 void Application::Load()
 {
-
+	
 
 }
 

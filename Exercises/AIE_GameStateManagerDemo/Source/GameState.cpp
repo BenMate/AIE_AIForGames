@@ -17,6 +17,11 @@
 
 #include "Player.h"
 #include "MainCharacter.h"
+#include "GoblinWanderer.h"
+#include "Chest.h"
+#include "Ladder.h"
+
+#include "BlackBoard.h"
 
 
 GameState::GameState(Application* app) : m_app(app)
@@ -34,7 +39,7 @@ void GameState::Load()
 	std::cout << "Loading GameState" << std::endl;
 
 	MyAssets::LoadAssets();
-
+	
 	m_camera.zoom = 1;
 	m_camera.offset = { GetScreenWidth() / 2.0f ,GetScreenHeight() / 2.0f };
 
@@ -44,8 +49,11 @@ void GameState::Load()
 void GameState::Unload()
 {
 	std::cout << "UnLoading GameState" << std::endl;
-	MyAssets::UnLoadAssets();
 
+	//delete all other entities
+
+	delete m_blackBoard;
+	m_blackBoard = nullptr;
 }
 
 void GameState::Update(float deltaTime)
@@ -57,48 +65,46 @@ void GameState::Update(float deltaTime)
 
 	if (IsKeyPressed(KEY_SPACE)) 
 		m_app->GetGameStateManager()->PushState("Pause");
+
+	if (IsKeyPressed(KEY_T))
+	{
+		m_app->GetGameStateManager()->SetState("GameState", nullptr);
+		m_app->GetGameStateManager()->PopState();
+		m_app->GetGameStateManager()->PushState("GameOver");
+	}
 	
 	UpdateGameCamera(deltaTime);
 
-	m_mainCharacter->Update(deltaTime);
-
-
-	/*for (auto chest : m_chest) 
-	{
+	for (auto chest : m_chest) 
 		chest->Update(deltaTime);
-	}*/
 	
-		
-	/*for (auto goblin : m_goblin)
-	{
+	for (auto goblin : m_goblinWand)
 		goblin->Update(deltaTime);
-	}*/
+	
+	for (auto ladder : m_ladder)
+		ladder->Update(deltaTime);
 
+	m_mainCharacter->Update(deltaTime);
 }
 
 void GameState::Draw()
 {
-	ClearBackground(WHITE);
+	ClearBackground(DARKBROWN);
 
 	BeginMode2D(m_camera);
 
 	DrawTexture(MyAssets::worldBG, 0, 0, WHITE);
 
 	if (IsKeyDown(KEY_TAB)) DrawTexture(MyAssets::colourBG, 0, 0, WHITE);
-	
-	//for (auto chest : m_chest)
-	//{
-	//	chest->Draw();
-	//	
-	//}
 
-		m_mainCharacter->Draw(); 
-
-	//for (auto goblin : m_goblin) 
-	//{
-	//	goblin->Draw();
-	//}
+	for (auto chest : m_chest)
+		chest->Draw();
 		
+	for (auto goblin : m_goblinWand) 
+		goblin->Draw();
+	
+	m_mainCharacter->Draw();
+
 	if (IsKeyDown(KEY_TAB)) DrawDebugGraph();
 
 	DrawText("GameState", 10, 10, 100, DARKGRAY);
@@ -110,14 +116,9 @@ void GameState::DrawDebugGraph()
 {
 	for (auto& node : m_graph->GetNodes())
 	{
-		if (IsInCameraView(node->data)) 
-		{
-			DrawCircle(node->data.x, node->data.y, 4, GRAY); //only draws if its on the players screen
-		}
+		if (IsInCameraView(node->data)) DrawCircle(node->data.x, node->data.y, 4, GRAY); 
 	}
 }
-
-
 
 void GameState::BuildGraphMap() 
 {
@@ -140,29 +141,18 @@ void GameState::BuildGraphMap()
 			auto color = MyAssets::GetImagePixel(MyAssets::colourBGRaw, xPos, yPos);
 
 			//spawns node on a walkable space
-			if (color != 0xFF000000)
-			{
-				m_graph->AddNode({ xPos, yPos });
-			}
+			if (color != 0xFF000000) m_graph->AddNode({ xPos, yPos });
 
 			//Spawns chest on red
-			/*if (color == 0xFF0000FF)
-			{
-				CreateChest({ xPos, yPos });
-			}*/
+			if (color == 0xFF0000FF) CreateChest({ xPos, yPos });
 
 			//spawn player on blue 
-			if (color == 0xFFFF0000)
-			{
+			if (color == 0xFFFF0000) 
+				
 				CreatePlayer({ xPos, yPos });
-			}
-
-			//spawn goblin on green
-			/*if (color == 0xFF00FF00)
-			{
-				CreateGoblin({xPos, yPos});
-			}*/
 			
+			//spawn goblin on green
+			if (color == 0xFF00FF00) CreateGoblin({xPos, yPos});			
 		}
 	}
 
@@ -188,8 +178,11 @@ void GameState::UpdateGameCamera(float deltaTime)
 	int mouseScrollDelta = GetMouseWheelMove();
 	m_camera.zoom += mouseScrollDelta * m_camera.zoom * 0.05f;
 
-	if (m_camera.zoom < 0.2f) m_camera.zoom = 0.2f;
 	m_camera.target = m_mainCharacter->GetPosition();
+
+	if (m_camera.zoom > 4.0f) m_camera.zoom = 4.0f;
+	if (m_camera.zoom < 1.5f) m_camera.zoom = 1.5f;
+
 }
 
 bool GameState::IsInCameraView(Vector2 pos)
@@ -198,44 +191,45 @@ bool GameState::IsInCameraView(Vector2 pos)
 	return (!(pos.x < 0 || pos.x > GetScreenWidth() || pos.y < 0 || pos.y > GetScreenHeight()));
 }
 
-//
-//GameObject* GameState::CreateChest(Vector2 pos)
-//{
-//	GameObject* chest = new GameObject();
-//	chest->SetPosition(pos);
-//
-//	m_chest.push_back(chest);
-//	return chest;
-//}
+GameObject* GameState::CreateChest(Vector2 pos)
+{
+	GameObject* chest = new Chest();
+	chest->SetPosition(pos);
+
+	m_chest.push_back(chest);
+	return chest;
+}
 
 GameObject* GameState::CreatePlayer(Vector2 pos)
 {
-	m_mainCharacter = new MainCharacter();//create new gameobject - mainCharacter
-	m_mainCharacter->SetPosition(pos);//sets its initial pos
+	m_mainCharacter = new MainCharacter();
+	m_mainCharacter->SetPosition(pos);
 
 	return m_mainCharacter;
 }
 
-//GameObject* GameState::CreateGoblin(Vector2 pos) 
-//{
-//	GameObject* goblin = new GameObject();//make file
-//	goblin->SetPosition(pos);
-//
-//	m_goblin.push_back(goblin);
-//	return goblin;
-//}
-
-void GameState::UpdateColRec() 
+GameObject* GameState::CreateGoblin(Vector2 pos) 
 {
-	int tilesize = 32;
-//	auto playerPos = m_player->GetPosition();
+	GameObject* goblin = new GoblinWanderer();
 
+	//to slow the goblins
+	goblin->SetVelocity({0.0f,0.0f});
+	goblin->SetFriction(7.0f);
+	
+	goblin->SetPosition(pos);
 
+	goblin->SetBlackBoard(m_blackBoard); 
 
+	m_goblinWand.push_back(goblin);
+
+	return goblin;
 }
 
-void GameState::DrawColRec() 
+GameObject* GameState::CreateLadder(Vector2 pos)
 {
+	GameObject* ladder = new Ladder();
+	ladder->SetPosition(pos);
 
+	m_chest.push_back(ladder);
+	return ladder;
 }
-

@@ -44,7 +44,7 @@ void MenuState::Update(float deltaTime)
 		m_app->GetGameStateManager()->PushState("Graph");
 	}
 
-	if (IsKeyPressed(KEY_P))
+	if (IsKeyPressed(KEY_M))
 	{
 		m_app->GetGameStateManager()->SetState("Menu", nullptr);
 		m_app->GetGameStateManager()->PopState();
@@ -54,10 +54,10 @@ void MenuState::Update(float deltaTime)
 
 void MenuState::Draw()
 {
-	DrawText("DemoMenu", 10, 5, 50, GRAY);
+	DrawText("DemoState", 10, 5, 50, GRAY);
 
 	DrawText("Press 1 to agent tests", 10, 50, 20, GRAY);
 	DrawText("Press 2 for Graph tests ", 10, 100, 20, GRAY);
 
-	DrawText("Press P for GameMenu", 10, 150, 20, DARKGRAY);
+	DrawText("Press M for GameMenu", 10, 150, 20, DARKGRAY);
 }

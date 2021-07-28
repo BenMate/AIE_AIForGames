@@ -16,12 +16,12 @@ void SeekBehaviour::Update(GameObject* obj, float deltaTime)
 {
 
 	float distToTarget = Vector2Distance(obj->GetPosition(), m_target);
+
 	if (distToTarget < m_targetRadius) {
 		if (m_onArriveFn) {
 			m_onArriveFn();
 		}
 	}
-
 
 	Vector2 heading = Vector2Add(obj->GetPosition(), obj->GetVelocity());
 	float headingLength = Vector2Length(heading);

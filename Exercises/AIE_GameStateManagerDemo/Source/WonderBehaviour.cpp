@@ -34,6 +34,8 @@ void WanderBehaviour::Update(GameObject* obj, float deltaTime)
 	//	obj->GetMaxForce());
 
 	//	obj->ApplyForce(wanderTD);
+
+	
 }
 
 void WanderBehaviour::Draw(GameObject* obj)

@@ -8,6 +8,8 @@ class GameStateManager;
 class Application;
 class MainCharacter;
 
+class BlackBoard;
+
 class Graph2DEditor;
 class Graph2D;
 class GameObject;
@@ -25,9 +27,10 @@ public:
 	virtual void Update(float deltaTime);
 	virtual void Draw();
 
-	//GameObject* CreateChest(Vector2 pos);
+	GameObject* CreateChest(Vector2 pos);
 	GameObject* CreatePlayer(Vector2 pos);
-	//GameObject* CreateGoblin(Vector2 pos);
+	GameObject* CreateGoblin(Vector2 pos);
+	GameObject* CreateLadder(Vector2 pos);
 
 	void DrawDebugGraph();
 	void BuildGraphMap();
@@ -35,8 +38,6 @@ public:
 	void UpdateGameCamera(float deltaTime);
 	bool IsInCameraView(Vector2 pos);
 
-	void UpdateColRec();
-	void DrawColRec();
 
 
 
@@ -51,7 +52,10 @@ private:
 	Camera2D m_camera;
 
 	std::list<GameObject*> m_chest;
-	std::list<GameObject*> m_goblin;
+	std::list<GameObject*> m_goblinWand;
+	std::list<GameObject*> m_ladder;
 
 	MainCharacter* m_mainCharacter = nullptr;
+
+	BlackBoard* m_blackBoard = nullptr;
 };

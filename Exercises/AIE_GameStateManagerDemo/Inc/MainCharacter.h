@@ -15,13 +15,11 @@ public:
 	virtual void Update(float deltaTime);
 	virtual void Draw();
 
-	void UpdatePlayerWallCollision();
+	void UpdatePlayerWallCollision(float deltaTime);
 
 protected:
 
-
 	KeyBoardBehaviour* m_KbBehaviour;
-
 
 private:
 };

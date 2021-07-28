@@ -5,6 +5,7 @@
 class SeekBehaviour;
 class WanderBehaviour;
 
+
 class GoblinWanderer : public GameObject
 {
 public:
@@ -17,9 +18,10 @@ public:
 
 protected:
 
-	
 	SeekBehaviour* m_seekBehaviour;
 	WanderBehaviour* m_wanderBehaviour;
+
+	
 
 private:
 };

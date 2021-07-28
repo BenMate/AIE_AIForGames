@@ -2,6 +2,7 @@
 #include "ScrabbleBoard.h"
 
 #include <cstring>
+#include <map>
 
 ScrabbleBoard::ScrabbleBoard(int rows, int cols) :
 	ROWS(rows), COLS(cols)
@@ -83,7 +84,7 @@ bool ScrabbleBoard::CanPlaceText(int xIndex, int yIndex, const char* text, EDire
 	// DAILY WARMUP - TODO
 	// ========================================================================
 	// write your code here
-	int i = 0;
+
 	int overlapping = 0;
 	int sizeOfText = strlen(text);
 
@@ -91,23 +92,23 @@ bool ScrabbleBoard::CanPlaceText(int xIndex, int yIndex, const char* text, EDire
 	int xDir = (dir == EDirection::RIGHT ? 1 : 0);
 
 	//word was greater then the board
-	
+
 	if (dir == EDirection::DOWN)
 		if (yIndex + sizeOfText > ROWS) return false;
-	
+
 	if (dir == EDirection::RIGHT)
 		if (xIndex + sizeOfText > COLS) return false;
-	
+
 	//the the word overlaps return false but shares a same character return true
 	int sharedChacterCount = 0;
 	//loop through word 
-	for (int i = 0; i < sizeOfText; i++) 
+	for (int i = 0; i < sizeOfText; i++)
 	{
 		char characterToPlace = text[i];
 		char characterOnBoard = GetBoardCharacter(xIndex + xDir * i, yIndex + yDir * 1);
 
 		if (characterOnBoard != ' ' && characterToPlace != characterOnBoard) return false;
-		else if (characterToPlace == characterOnBoard) sharedChacterCount += 1;			
+		else if (characterToPlace == characterOnBoard) sharedChacterCount += 1;
 	}
 
 
@@ -121,14 +122,43 @@ unsigned int ScrabbleBoard::CalculateScore(int xIndex, int yIndex, const char* t
 	// ========================================================================
 	// write your code here
 
+	static std::map<char, int> scoreTable{
+		{'a', 1},{'e', 1},{'l', 1},{'u', 1},{'n', 1},{'r', 1}, {'s', 1}, {'t', 1},{'o', 1},{'i', 1},
+		{'g', 2},{'d', 2},
+		{'b', 3}, {'c', 3}, {'m', 3},{'p', 3},
+		{'y', 4},{'f', 4},{'h', 4},{'v', 4},{'w', 4},
+		{'k', 5},
+		{'j', 8},{'x', 8},
+		{'q', 10},{'z', 10} };
 
+	int score = 0;
+	int TWWord = 0;
+	int DWWord = 0;
 
+	int sizeOfText = strlen(text);
+	int yDir = (dir == EDirection::DOWN ? 1 : 0);
+	int xDir = (dir == EDirection::RIGHT ? 1 : 0);
 
+	//loop through word
+	for (int i = 0; i < sizeOfText; i++)
+	{
+		int LetterScore = scoreTable[towlower(text[i])];
+		auto modifier = GetBoardModifier(xIndex + xDir * i, yIndex + yDir * i);
 
-	auto characterToPlace = text[0];
-	auto characterOnBoard = GetBoardCharacter(xIndex, yIndex);
-	auto modifier = GetBoardModifier(xIndex, yIndex);
+		//checks the modifier on the board
+		if (modifier == EScoreMod::DL) LetterScore *= 2;
+		else if (modifier == EScoreMod::TL) LetterScore *= 3;
+		else if (modifier == EScoreMod::DW) DWWord++;
+		else if (modifier == EScoreMod::TW) TWWord++;
 
-	int score = 1;
+		score += LetterScore;
+	}
+	//adding the modifier values to the score
+	for (int i = 0; i < TWWord; i++) 
+		score *= 3;
+	
+	for (int i = 0; i < DWWord; i++) 
+		score *= 2;
+	
 	return score;
 }

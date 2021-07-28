@@ -8,6 +8,7 @@
 
 #include <iostream>
 
+#include "GameMenuState.h"
 
 GuideState::GuideState(Application* app) : m_app(app)
 {
@@ -34,10 +35,23 @@ void GuideState::Unload()
 
 void GuideState::Update(float deltaTime)
 {
+	if (IsKeyPressed(KEY_M)) 
+	{
+		m_app->GetGameStateManager()->SetState("Guide", new GameMenuState(m_app));
+		m_app->GetGameStateManager()->PopState();
+		m_app->GetGameStateManager()->PushState("GameMenu");
+	}
+
 
 }
 
 void GuideState::Draw()
 {
 	DrawText("GuideState", 10, 10, 20, GRAY);
+	DrawText("Press M to go back to Menu", 10, 50, 20, GRAY);
+
+
+
+
+
 }

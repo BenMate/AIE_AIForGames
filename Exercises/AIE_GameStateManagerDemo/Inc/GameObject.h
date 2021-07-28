@@ -4,6 +4,8 @@
 
 class Behaviour;
 
+class BlackBoard;
+
 class GameObject
 {
 public:
@@ -34,20 +36,24 @@ public:
 	Behaviour* GetBehaviour();
 	void SetBehaviour(Behaviour* behaviour);
 
+	BlackBoard* GetBlackBoard();
+	void SetBlackBoard(BlackBoard* blackboard);
+	
+
 protected:
 
 	Vector2 m_position = { 0.0f , 0.0f };
 	Vector2 m_velocity = { 0.0f , 0.0f };
 	Vector2 m_acceleration = { 0.0f , 0.0f };
-	float m_friction = 0.0f;
-	float m_maxSpeed = 0.0f;
-	float m_maxForce = 0.0f;
+
+	float m_friction = 0.1f;
+	float m_maxSpeed = 350.0f;
+	float m_maxForce = 200.0f;
 
 	Behaviour* m_behaviour = nullptr;
 
-
+	BlackBoard* m_blackBoard = nullptr;
 private:
-
 
 
 };

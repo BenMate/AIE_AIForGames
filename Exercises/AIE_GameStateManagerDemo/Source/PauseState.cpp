@@ -34,6 +34,7 @@ void PauseState::Update(float deltaTime)
 	{
 		m_app->GetGameStateManager()->PopState();
 	}
+
 }
 
 void PauseState::Draw()

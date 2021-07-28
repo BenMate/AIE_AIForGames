@@ -1,21 +1,23 @@
 #include "GameObject.h"
 #include "Behaviour.h"
 
+#include "BlackBoard.h"
+
 GameObject::GameObject()
 {
-
+	m_blackBoard = new BlackBoard();
 }
 
 GameObject::~GameObject()
 {
-
+	delete m_blackBoard;
+	m_blackBoard = nullptr;
 }
 
 void GameObject::Update(float deltaTime)
 {
 	if (m_behaviour != nullptr)
 		m_behaviour->Update(this, deltaTime);
-
 
 	//m_velocity =+ m_acceleration * deltaTime; 
 	//m_position += m_velocity * deltaTime;
@@ -26,7 +28,6 @@ void GameObject::Update(float deltaTime)
 
 	m_velocity = Vector2Add(m_velocity, Vector2Scale(m_acceleration, deltaTime));
 	m_position = Vector2Add(m_position, Vector2Scale(m_velocity, deltaTime));
-	m_acceleration = { 0,0 };
 }
 
 void GameObject::Draw()
@@ -34,21 +35,28 @@ void GameObject::Draw()
 	if (m_behaviour != nullptr)
 		m_behaviour->Draw(this);
 
-	DrawCircle(m_position.x, m_position.y, 8, GRAY);
-
 	Vector2 heading = Vector2Add(m_position, m_velocity);
 
+	//DrawCircle(m_position.x, m_position.y, 8, GRAY);
 	DrawLine(m_position.x, m_position.y, heading.x, heading.y, BLACK);
+	DrawLine(m_position.x, m_position.y, m_position.x + m_acceleration.x, m_position.y + m_acceleration.y, RED);
+
+
+	m_acceleration = { 0,0 };
 }
 
 
 void GameObject::ApplyForce(const Vector2& force)
 {
-	//m_accerlleration += force;
 	m_acceleration = Vector2Add(m_acceleration, force);
 }
 
 //Getters
+BlackBoard* GameObject::GetBlackBoard()
+{
+	return m_blackBoard;
+}
+
 const Vector2& GameObject::GetPosition() const
 {
 	return m_position;
@@ -108,3 +116,9 @@ void GameObject::SetBehaviour(Behaviour* behaviour)
 {
 	m_behaviour = behaviour;
 }
+
+void GameObject::SetBlackBoard(BlackBoard* blackboard)
+{
+	m_blackBoard = blackboard;
+}
+

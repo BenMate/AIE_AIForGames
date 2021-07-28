@@ -55,7 +55,7 @@ void GameStateManager::SetState(const char* name, IGameState* state)
 
 		m_states[name] = state;
 
-		if (m_states[name] != NULL) {
+		if (m_states[name] != nullptr) {
 			m_states[name]->Load();
 		}
 

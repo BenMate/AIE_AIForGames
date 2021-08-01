@@ -4,7 +4,6 @@
 
 class KeyBoardBehaviour;
 
-
 class MainCharacter : public GameObject
 {
 public:
@@ -15,11 +14,13 @@ public:
 	virtual void Update(float deltaTime);
 	virtual void Draw();
 
+
+	void DrawCharacter();
 	void UpdatePlayerWallCollision(float deltaTime);
 
 protected:
 
 	KeyBoardBehaviour* m_KbBehaviour;
-
+	
 private:
 };

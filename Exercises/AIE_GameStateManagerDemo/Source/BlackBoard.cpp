@@ -14,3 +14,8 @@ BlackBoard::~BlackBoard()
 {
 
 }
+
+void BlackBoard::SetPlayerPos(Vector2* pos)
+{
+	playersPos = pos;
+}

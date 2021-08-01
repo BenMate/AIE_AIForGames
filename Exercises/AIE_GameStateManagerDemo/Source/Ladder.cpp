@@ -1,35 +1,57 @@
 #include "Ladder.h"
 #include "Assets.h"
+
 #include "raylib.h"
 
+#include "BlackBoard.h"
 
-Ladder::Ladder()
+#include <iostream>
+
+LadderEntity::LadderEntity()
 {
 
 }
 
-Ladder::~Ladder()
+LadderEntity::~LadderEntity()
 {
 
 }
 
-void Ladder::Update(float deltaTime)
+void LadderEntity::Update(float deltaTime)
 {
+
 	GameObject::Update(deltaTime);
-
-	//UpdatePlayerWallCollision();
 }
 
-void Ladder::Draw()
-{
-	Rectangle chestSourceRec = { 0.0f ,0.0f ,24.0f ,24.0f };
-	Rectangle chestDestRec = { m_position.x, m_position.y, 24.0f ,24.0f };
-	Vector2 chestOrigin = { 12,12 };
-
-	DrawTexturePro(MyAssets::chestC, chestSourceRec, chestDestRec, chestOrigin, 0.0f, WHITE);
-
-	//if (playerwalks near) draw ladder
-
+void LadderEntity::Draw()
+{	
+	DrawLadder();
 	GameObject::Draw();
+}
 
+void LadderEntity::DrawLadder()
+{
+	Rectangle ladderSourceRec = { 0.0f ,0.0f ,17.0f ,28.0f };
+	Rectangle ladderDestRec = { m_position.x, m_position.y, 17.0f ,28.0f };
+	Vector2 ladderOrigin = { 8.5,14 };
+
+	DrawTexturePro(MyAssets::Ladder, ladderSourceRec, ladderDestRec, ladderOrigin, 0.0f, WHITE);
+}
+
+bool LadderEntity::IsNearLadder()
+{
+	Vector2* playerPos = m_blackBoard->playersPos;
+
+	if (playerPos == nullptr)
+		return false;
+	
+	float playerladderDistance = Vector2Distance(*playerPos, GetPosition()); 
+
+	if (playerladderDistance < m_LadderRadius)
+	{
+		return true;
+
+	}
+
+	return false;
 }

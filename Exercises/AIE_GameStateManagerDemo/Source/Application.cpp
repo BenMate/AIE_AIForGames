@@ -96,3 +96,7 @@ void Application::Draw()
 
 	EndDrawing();
 }
+
+GameStateManager* Application::GetGameStateManager() {
+	return m_gameStateManager;
+}

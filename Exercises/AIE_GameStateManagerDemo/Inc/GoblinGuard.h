@@ -16,6 +16,7 @@ public:
 	virtual void Draw();
 
 protected:
+	
 
 	SeekBehaviour* m_seekBehaviour;
 	//TODO: implement pathfind...

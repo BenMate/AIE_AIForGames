@@ -2,9 +2,6 @@
 
 #include "GameObject.h"
 
-
-
-
 class Chest : public GameObject
 {
 public:
@@ -15,14 +12,16 @@ public:
 	virtual void Update(float deltaTime);
 	virtual void Draw();
 
+	void DrawChest();
+	bool UpdateOpenChest();
+	
 
-	//have a radius
-	//draw a asset over the top or override ? asset1 : asset2....maybe
-
-	float m_chestRadius = 100.0f;
-
+	float m_chestRadius = 30.0f;
+	
 protected:
 
+	bool OpenChest = false;
 
 private:
+
 };

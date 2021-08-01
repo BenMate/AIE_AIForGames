@@ -33,27 +33,18 @@
     <Filter Include="Header Files\Test">
       <UniqueIdentifier>{80294dec-7c85-47e1-858b-335a82554185}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\GameStates">
+      <UniqueIdentifier>{4c0b9001-3835-4b59-8311-9fca40b259b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameStates">
+      <UniqueIdentifier>{10c4fa0b-d35f-4e91-ae6e-691097a2a38d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Inc\GameState.h">
-      <Filter>Header Files\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\PauseState.h">
-      <Filter>Header Files\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\GameMenuState.h">
-      <Filter>Header Files\Game</Filter>
-    </ClInclude>
     <ClInclude Include="Inc\GameOverState.h">
       <Filter>Header Files\Game</Filter>
     </ClInclude>
-    <ClInclude Include="Inc\GuideState.h">
-      <Filter>Header Files\Game</Filter>
-    </ClInclude>
     <ClInclude Include="Inc\Assets.h">
-      <Filter>Header Files\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\GamePlayer.h">
       <Filter>Header Files\Game</Filter>
     </ClInclude>
     <ClInclude Include="Inc\MainCharacter.h">
@@ -85,9 +76,6 @@
     </ClInclude>
     <ClInclude Include="Inc\FleeBehaviour.h">
       <Filter>Header Files\Behaviours</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\GameStateManager.h">
-      <Filter>Header Files\Game</Filter>
     </ClInclude>
     <ClInclude Include="Inc\KeyBoardBehaviour.h">
       <Filter>Header Files\Behaviours</Filter>
@@ -122,27 +110,27 @@
     <ClInclude Include="Inc\Ladder.h">
       <Filter>Header Files\Entitites</Filter>
     </ClInclude>
+    <ClInclude Include="Inc\PauseState.h">
+      <Filter>Header Files\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\GuideState.h">
+      <Filter>Header Files\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\GameStateManager.h">
+      <Filter>Header Files\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\GameState.h">
+      <Filter>Header Files\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\GameMenuState.h">
+      <Filter>Header Files\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Button.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\GameState.cpp">
-      <Filter>Source Files\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\PauseState.cpp">
-      <Filter>Source Files\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\GameMenuState.cpp">
-      <Filter>Source Files\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\GameOverState.cpp">
-      <Filter>Source Files\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\GuideState.cpp">
-      <Filter>Source Files\Game</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Assets.cpp">
-      <Filter>Source Files\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\GamePlayer.cpp">
       <Filter>Source Files\Game</Filter>
     </ClCompile>
     <ClCompile Include="Source\GoblinWanderer.cpp">
@@ -172,9 +160,6 @@
     <ClCompile Include="Source\KeyBoardBehaviour.cpp">
       <Filter>Source Files\Behaviour</Filter>
     </ClCompile>
-    <ClCompile Include="Source\GameStateManager.cpp">
-      <Filter>Source Files\Game</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Player.cpp">
       <Filter>Source Files\Test</Filter>
     </ClCompile>
@@ -183,9 +168,6 @@
     </ClCompile>
     <ClCompile Include="Source\Demo1.cpp">
       <Filter>Source Files\Test</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\GameObject.cpp">
-      <Filter>Source Files\Game</Filter>
     </ClCompile>
     <ClCompile Include="Source\Graph2D.cpp">
       <Filter>Source Files\Game</Filter>
@@ -203,6 +185,30 @@
       <Filter>Source Files\Test</Filter>
     </ClCompile>
     <ClCompile Include="Source\Ladder.cpp">
+      <Filter>Source Files\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PauseState.cpp">
+      <Filter>Source Files\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GuideState.cpp">
+      <Filter>Source Files\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameStateManager.cpp">
+      <Filter>Source Files\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameOverState.cpp">
+      <Filter>Source Files\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameMenuState.cpp">
+      <Filter>Source Files\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Button.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameState.cpp">
+      <Filter>Source Files\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameObject.cpp">
       <Filter>Source Files\Entities</Filter>
     </ClCompile>
   </ItemGroup>

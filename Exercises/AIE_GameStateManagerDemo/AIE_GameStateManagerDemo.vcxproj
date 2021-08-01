@@ -156,12 +156,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Inc\BlackBoard.h" />
+    <ClInclude Include="Inc\Button.h" />
     <ClInclude Include="Inc\Chest.h" />
     <ClInclude Include="Inc\GoblinGuard.h" />
     <ClInclude Include="Inc\Assets.h" />
     <ClInclude Include="Inc\GameMenuState.h" />
     <ClInclude Include="Inc\GameOverState.h" />
-    <ClInclude Include="Inc\GamePlayer.h" />
     <ClInclude Include="Inc\GoblinWanderer.h" />
     <ClInclude Include="Inc\GuideState.h" />
     <ClInclude Include="Inc\Application.h" />
@@ -187,12 +187,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\BlackBoard.cpp" />
+    <ClCompile Include="Source\Button.cpp" />
     <ClCompile Include="Source\Chest.cpp" />
     <ClCompile Include="Source\GoblinGuard.cpp" />
     <ClCompile Include="Source\GoblinWanderer.cpp" />
     <ClCompile Include="Source\Ladder.cpp" />
     <ClCompile Include="Source\MainCharacter.cpp" />
-    <ClCompile Include="Source\GamePlayer.cpp" />
     <ClCompile Include="Source\Assets.cpp" />
     <ClCompile Include="Source\GameMenuState.cpp" />
     <ClCompile Include="Source\GameOverState.cpp" />

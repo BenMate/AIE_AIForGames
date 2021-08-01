@@ -23,9 +23,9 @@ public:
 	void Update(float deltaTime);
 	void Draw();
 
-	GameStateManager* GetGameStateManager() {
-		return m_gameStateManager;
-	}
+	GameStateManager* GetGameStateManager();
+
+	
 
 protected:
 

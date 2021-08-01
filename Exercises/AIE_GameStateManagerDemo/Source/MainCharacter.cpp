@@ -1,22 +1,21 @@
 #include "MainCharacter.h"
 #include "KeyBoardBehaviour.h"
 
-#include "Assets.h"
+#include "BlackBoard.h"
 
+#include "Assets.h"
 #include "raylib.h"
 
 
 MainCharacter::MainCharacter()
 {
 	m_KbBehaviour = new KeyBoardBehaviour();
-	
 	SetBehaviour(m_KbBehaviour);
 }
 
 MainCharacter::~MainCharacter()
 {
 	SetBehaviour(nullptr);
-
 	delete m_KbBehaviour;
 }
 
@@ -25,18 +24,27 @@ void MainCharacter::Update(float deltaTime)
 	GameObject::Update(deltaTime);
 
 	UpdatePlayerWallCollision(deltaTime);
+
+
+	m_blackBoard->SetPlayerPos(&m_position);
 }
 
 void MainCharacter::Draw()
 {
-	Rectangle PlayersourceRec = { 0.0f ,0.0f ,32.0f ,32.0f };
-	Rectangle PlayerdestRec = { m_position.x, m_position.y, 32.0f ,32.0f };
-	Vector2 Playerorigin = {16,16};
-
-	DrawTexturePro(MyAssets::playerCharacter, PlayersourceRec, PlayerdestRec, Playerorigin, 0.0f, WHITE);
-
+	
+	DrawCharacter();
 	GameObject::Draw();
 }
+
+void MainCharacter::DrawCharacter()
+{
+	Rectangle PlayersourceRec = { 0.0f ,0.0f ,32.0f ,32.0f };
+	Rectangle PlayerdestRec = { m_position.x, m_position.y, 32.0f ,32.0f };
+	Vector2 Playerorigin = { 16,16 };
+
+	DrawTexturePro(MyAssets::playerCharacter, PlayersourceRec, PlayerdestRec, Playerorigin, 0.0f, WHITE);
+}
+
 
 void MainCharacter::UpdatePlayerWallCollision(float deltaTime)
 {

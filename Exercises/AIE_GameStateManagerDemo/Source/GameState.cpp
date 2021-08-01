@@ -6,6 +6,8 @@
 #include "GameStateManager.h"
 #include "IGameState.h"
 #include "GameObject.h"
+#include "PauseState.h"
+#include "GameOverState.h"
 
 #include "Assets.h"
 
@@ -15,7 +17,6 @@
 #include "Graph2D.h"
 #include "Graph2DEditor.h"
 
-#include "Player.h"
 #include "MainCharacter.h"
 #include "GoblinWanderer.h"
 #include "Chest.h"
@@ -37,6 +38,8 @@ GameState::~GameState()
 void GameState::Load()
 {
 	std::cout << "Loading GameState" << std::endl;
+
+	m_blackBoard = new BlackBoard();
 
 	MyAssets::LoadAssets();
 	
@@ -63,28 +66,24 @@ void GameState::Update(float deltaTime)
 	if (currentState != this)
 		return;
 
-	if (IsKeyPressed(KEY_SPACE)) 
+	if (IsKeyPressed(KEY_SPACE))
+	{
 		m_app->GetGameStateManager()->PushState("Pause");
+	}
 
 	if (IsKeyPressed(KEY_T))
 	{
-		m_app->GetGameStateManager()->SetState("GameState", nullptr);
+		m_app->GetGameStateManager()->SetState("GameState", new GameOverState(m_app));
 		m_app->GetGameStateManager()->PopState();
 		m_app->GetGameStateManager()->PushState("GameOver");
 	}
 	
 	UpdateGameCamera(deltaTime);
 
-	for (auto chest : m_chest) 
-		chest->Update(deltaTime);
-	
-	for (auto goblin : m_goblinWand)
-		goblin->Update(deltaTime);
-	
-	for (auto ladder : m_ladder)
-		ladder->Update(deltaTime);
+	UpdateEntities(deltaTime);
 
-	m_mainCharacter->Update(deltaTime);
+	CanEscape();	
+	DidWinGame();
 }
 
 void GameState::Draw()
@@ -97,13 +96,7 @@ void GameState::Draw()
 
 	if (IsKeyDown(KEY_TAB)) DrawTexture(MyAssets::colourBG, 0, 0, WHITE);
 
-	for (auto chest : m_chest)
-		chest->Draw();
-		
-	for (auto goblin : m_goblinWand) 
-		goblin->Draw();
-	
-	m_mainCharacter->Draw();
+	DrawEntities();
 
 	if (IsKeyDown(KEY_TAB)) DrawDebugGraph();
 
@@ -147,9 +140,10 @@ void GameState::BuildGraphMap()
 			if (color == 0xFF0000FF) CreateChest({ xPos, yPos });
 
 			//spawn player on blue 
-			if (color == 0xFFFF0000) 
-				
-				CreatePlayer({ xPos, yPos });
+			if (color == 0xFFFF0000) CreatePlayer({ xPos, yPos });
+
+			//spawn a ladder on blue
+			if (color == 0xFFFF0000) CreateLadder({ xPos, yPos });
 			
 			//spawn goblin on green
 			if (color == 0xFF00FF00) CreateGoblin({xPos, yPos});			
@@ -193,8 +187,9 @@ bool GameState::IsInCameraView(Vector2 pos)
 
 GameObject* GameState::CreateChest(Vector2 pos)
 {
-	GameObject* chest = new Chest();
+	Chest* chest = new Chest();
 	chest->SetPosition(pos);
+	chest->SetBlackBoard(m_blackBoard);
 
 	m_chest.push_back(chest);
 	return chest;
@@ -204,6 +199,7 @@ GameObject* GameState::CreatePlayer(Vector2 pos)
 {
 	m_mainCharacter = new MainCharacter();
 	m_mainCharacter->SetPosition(pos);
+	m_mainCharacter->SetBlackBoard(m_blackBoard);
 
 	return m_mainCharacter;
 }
@@ -212,12 +208,9 @@ GameObject* GameState::CreateGoblin(Vector2 pos)
 {
 	GameObject* goblin = new GoblinWanderer();
 
-	//to slow the goblins
 	goblin->SetVelocity({0.0f,0.0f});
 	goblin->SetFriction(7.0f);
-	
 	goblin->SetPosition(pos);
-
 	goblin->SetBlackBoard(m_blackBoard); 
 
 	m_goblinWand.push_back(goblin);
@@ -227,9 +220,80 @@ GameObject* GameState::CreateGoblin(Vector2 pos)
 
 GameObject* GameState::CreateLadder(Vector2 pos)
 {
-	GameObject* ladder = new Ladder();
-	ladder->SetPosition(pos);
+	m_ladder = new LadderEntity();
+	m_ladder->SetPosition(pos);
+	m_ladder->SetBlackBoard(m_blackBoard);
+	
+	return m_ladder;
+}
 
-	m_chest.push_back(ladder);
-	return ladder;
+LadderEntity* GameState::GetLadderEntity() 
+{
+	return m_ladder;
+}
+
+void GameState::SetLadderEntity(LadderEntity* ladder) 
+{
+	m_ladder = ladder;
+}
+
+MainCharacter* GameState::GetMainCharacter()
+{
+	return m_mainCharacter;
+}
+
+void GameState::SetMaincharacter(MainCharacter* mainCharacter)
+{
+	m_mainCharacter = mainCharacter;
+}
+
+void GameState::UpdateEntities(float deltaTime) 
+{
+	for (auto chest : m_chest)
+		chest->Update(deltaTime);
+
+	for (auto goblin : m_goblinWand)
+		goblin->Update(deltaTime);
+
+	m_mainCharacter->Update(deltaTime);
+
+	m_ladder->Update(deltaTime);
+}
+
+void GameState::DrawEntities() 
+{
+	for (auto chest : m_chest)
+		chest->Draw();
+
+	for (auto goblin : m_goblinWand)
+		goblin->Draw();
+
+	m_ladder->Draw();
+
+	m_mainCharacter->Draw();
+}
+
+bool GameState::CanEscape()
+{
+	canEscape = true;
+
+	for (auto c : m_chest)
+	{
+		if (!c->UpdateOpenChest())
+		{
+			canEscape = false;
+			break;
+		}
+	}
+	return canEscape;
+}
+
+void GameState::DidWinGame() 
+{
+	if (m_ladder->IsNearLadder() == true && canEscape == true) 
+	{
+		std::cout << "YOU WIN" << std::endl;
+	}
+	
+
 }

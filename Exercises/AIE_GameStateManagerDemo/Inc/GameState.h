@@ -6,13 +6,16 @@
 
 class GameStateManager;
 class Application;
+
+class GameObject;
 class MainCharacter;
+class LadderEntity;
+class Chest;
 
 class BlackBoard;
 
-class Graph2DEditor;
 class Graph2D;
-class GameObject;
+class Graph2DEditor;
 
 class GameState : public IGameState
 {
@@ -27,6 +30,12 @@ public:
 	virtual void Update(float deltaTime);
 	virtual void Draw();
 
+	MainCharacter* GetMainCharacter();
+	void SetMaincharacter(MainCharacter* mainCharacter);
+
+	LadderEntity* GetLadderEntity();
+	void SetLadderEntity(LadderEntity* ladder);
+
 	GameObject* CreateChest(Vector2 pos);
 	GameObject* CreatePlayer(Vector2 pos);
 	GameObject* CreateGoblin(Vector2 pos);
@@ -38,24 +47,39 @@ public:
 	void UpdateGameCamera(float deltaTime);
 	bool IsInCameraView(Vector2 pos);
 
+	bool CanEscape();
+	void UpdateEntities(float deltaTime);
+	void DrawEntities();
 
-
-
+	void DidWinGame();
+	
 protected:
 
 private:
+	bool canEscape = false;
+	
+
+	Vector2 m_playerPos = { 0.0f , 0.0f };
 
 	Application* m_app;
+
 	GameStateManager* m_gameStateManager = nullptr;
+
 	Graph2D* m_graph = nullptr;
 
 	Camera2D m_camera;
 
-	std::list<GameObject*> m_chest;
+	//game entities
+	//--------------------------------------
+	std::list<Chest*> m_chest;
+
 	std::list<GameObject*> m_goblinWand;
-	std::list<GameObject*> m_ladder;
+
+
+	LadderEntity* m_ladder = nullptr;
 
 	MainCharacter* m_mainCharacter = nullptr;
+	//---------------------------------------
 
 	BlackBoard* m_blackBoard = nullptr;
 };

@@ -13,9 +13,9 @@ public:
 	static Texture2D colourBG;
 	static Texture2D MenuBG;
 
+	static Texture2D Ladder;
 
 	static Texture2D playerCharacter;
-	static Texture2D chest;
 
 	static Texture2D goblinWand;
 	static Texture2D goblinPath;

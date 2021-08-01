@@ -13,6 +13,8 @@ Texture2D MyAssets::goblinPath;
 Texture2D MyAssets::chestC;
 Texture2D MyAssets::chestO;
 
+Texture2D MyAssets::Ladder;
+
 
 void MyAssets::LoadAssets()
 {
@@ -28,6 +30,8 @@ void MyAssets::LoadAssets()
 
 	chestC = LoadTexture("./Assets/Entity/ClosedChest.png");
 	chestO = LoadTexture("./Assets/Entity/OpenChest.png");
+
+	Ladder = LoadTexture("./Assets/Entity/Ladder.png");
 }
 
 void MyAssets::UnLoadAssets()
@@ -42,6 +46,7 @@ void MyAssets::UnLoadAssets()
 	UnloadTexture(goblinPath);
 	UnloadTexture(chestC);
 	UnloadTexture(chestO);
+	UnloadTexture(Ladder);
 }
 
 unsigned int MyAssets::GetImagePixel(Image img, int xPos, int yPos)

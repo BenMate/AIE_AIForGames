@@ -5,6 +5,10 @@
 class GameStateManager;
 class Application;
 
+class Button;
+class BlackBoard;
+
+
 
 class GameOverState : public IGameState
 {
@@ -25,8 +29,14 @@ protected:
 
 private:
 
+	float m_windowWidth = 1600;
+	float m_windowHeight = 900;
+
 	Application* m_app;
 
 	GameStateManager* m_gameStateManager = nullptr;
 
+	Button* m_menuButton;
+
+	BlackBoard* m_blackboard;
 };

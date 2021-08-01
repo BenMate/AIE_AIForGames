@@ -12,12 +12,15 @@ public:
 	BlackBoard();
 	 ~BlackBoard();
 
-	Vector2 playersPos = { NULL,NULL };
+	 void SetPlayerPos(Vector2* pos);
 
+	Vector2* playersPos =  nullptr;
+
+	int score = 1;
 	
 protected:
 
-
+	
 
 private:
 

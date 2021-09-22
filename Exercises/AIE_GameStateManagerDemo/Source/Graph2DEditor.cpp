@@ -13,7 +13,7 @@ Graph2DEditor::~Graph2DEditor()
 
 void Graph2DEditor::Update(float deltaTime)
 {
-	if (IsMouseButtonPressed(0)) {
+	if (IsMouseButtonPressed(0) ) {
 		auto mousePos = GetMousePosition();
 
 		auto newNode = m_graph->AddNode(mousePos);

@@ -6,8 +6,20 @@
 #include <functional>
 #include <algorithm>
 
+
+class IGraph 
+{
+public :
+	enum class SearchType
+	{
+		BFS,
+		DIJKSTRA,
+		//ASTAR
+	};
+};
+
 template<class TNodeData, class TEdgeData>
-class Graph
+class Graph : public IGraph
 {
 public:
 	struct Node;
@@ -30,10 +42,15 @@ public:
 		Node* node;
 		PFNode* parent = nullptr;
 
+		int depth = 0;
+		float gScore = 0;
+		float hScore = 0; 
+
 		PFNode() {}
 		PFNode(Node* n, PFNode* p) : node(n), parent(p) {}
 	};
 
+	
 
 public:
 	// ===========================================================================
@@ -119,20 +136,21 @@ public:
 	// ===========================================================================
 	// FindPath
 	// ===========================================================================
-	std::list<Node*> FindPath(Node* startNode, std::function<bool(Node*)> processNode)
+	std::list<Node*> FindPath(SearchType type, Node* startNode, std::function<bool(Node* n)> processNode)
 	{
-		std::list<PFNode*> stack;
-		std::list<PFNode*> visited;
-		std::list<Node*> pathNodes;
+		std::list<PFNode*> stack; //open list
+		std::list<PFNode*> visited; //close list
+		std::list<Node*> path;
 
-		auto GetNodeInLists = [&](Node* nodeToFind)->PFNode* {
-			for (auto& pn : stack)
-				if (pn->node == nodeToFind)
-					return pn;
+		auto GetNodeInLists = [&](Node* nodeToFind) -> PFNode* {
 
-			for (auto& pn : visited)
-				if (pn->node == nodeToFind)
-					return pn;
+			for (auto& n : stack)
+				if (n->node == nodeToFind)
+					return n;
+
+			for (auto& n : visited)
+				if (n->node == nodeToFind)
+					return n;
 
 			return nullptr;
 		};
@@ -150,41 +168,74 @@ public:
 			visited.push_back(pfNode);
 
 			// did we find a target node?
-			if (processNode(pfNode->node) == true) {
-
+			if (processNode(pfNode->node) == true)
+			{
 				// Calculate path
 				PFNode* current = pfNode;
 				while (current != nullptr)
 				{
-					pathNodes.push_front(current->node);
+					path.push_front(current->node);
 					current = current->parent;
 				}
 				break;
 			}
 
 			// add children to the stack
-			for (Edge& edge : pfNode->node->connections)
+			for (auto& edge : pfNode->node->connections)
 			{
+				auto childNode = edge.to;
+				float gScore = (pfNode->parent ? pfNode->parent->gScore : 0) + edge.data;
+				float hScore = 0; //we dont know the target node if you want astar change the find node 
+				int depth = pfNode->depth + 1;
+
 				// check if the node exists in the stack/visited list
-				PFNode* pfChild = GetNodeInLists(edge.to);
-				if (pfChild == nullptr)
+				PFNode* childPFNode = GetNodeInLists(edge.to);
+				if (childPFNode == nullptr)
 				{
-					pfChild = new PFNode(edge.to, pfNode);
-					stack.push_back(pfChild);
+					childPFNode = new PFNode(edge.to, pfNode);
+					childPFNode->gScore = gScore;
+					childPFNode->hScore = hScore;
+					childPFNode->depth = depth;
+
+					stack.push_back(childPFNode);
+				}
+				else if (childPFNode->gScore > gScore) 
+				{
+					//the child node is on te stack already
+					//but we can get to it faster...update
+					childPFNode->parent = pfNode;
+					childPFNode->gScore = gScore;
+					childPFNode->hScore = hScore;
+					childPFNode->depth = depth;
 				}
 			}
+
+			//sort stack by gScore;
+			stack.sort( [&](const PFNode* a, const PFNode* b) -> bool {
+				
+				switch (type) 
+				{
+				case SearchType::DIJKSTRA:  return a->gScore < b->gScore;
+				case SearchType::BFS:		return a->depth < b->depth;
+				default:					return a->gScore < b->gScore; //default is dijkstr
+				}
+
+
+			});
+
+
 		}
 
 		// delete the allocated memory
-		for (auto pfNode : visited)
-			delete pfNode;
+		for (auto& n : stack)
+			delete n;
 
-		for (auto pfNode : stack)
-			delete pfNode;
+		for (auto& n : visited)
+			delete n;
 
 		// return the found path
 		// it will be empty if it's not found.
-		return pathNodes;
+		return path;
 	}
 
 

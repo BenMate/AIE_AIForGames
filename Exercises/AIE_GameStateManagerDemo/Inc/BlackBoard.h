@@ -12,9 +12,10 @@ public:
 	BlackBoard();
 	 ~BlackBoard();
 
-	 void SetPlayerPos(Vector2* pos);
-
-	Vector2* playersPos =  nullptr;
+	 void SetPlayerPos(Vector2 pos, bool posKnown);
+	
+	 bool positionKnown = false;
+	 Vector2 playersPos;
 
 	int score = 1;
 	

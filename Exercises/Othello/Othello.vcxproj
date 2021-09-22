@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{743cde7d-7e54-4c8c-95f3-2a1fe0b356dc}</ProjectGuid>
-    <RootNamespace>AIEGameStateManagerDemo</RootNamespace>
+    <ProjectGuid>{bd531d86-7fc7-4015-8347-1f761d53f613}</ProjectGuid>
+    <RootNamespace>Othello</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -72,19 +72,15 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -92,13 +88,10 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)inc;$(SolutionDir)Raygui\src;$(SolutionDir)Raylib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>raylib.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)Raylib\bin\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -109,15 +102,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)inc;$(SolutionDir)Raygui\src;$(SolutionDir)Raylib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>raylib.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)Raylib\bin\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -126,13 +116,10 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)inc;$(SolutionDir)Raygui\src;$(SolutionDir)Raylib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>raylib.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)Raylib\bin\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -143,77 +130,16 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)inc;$(SolutionDir)Raygui\src;$(SolutionDir)Raylib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>raylib.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)Raylib\bin\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Inc\GoblinSeek.h" />
-    <ClInclude Include="Inc\BlackBoard.h" />
-    <ClInclude Include="Inc\Button.h" />
-    <ClInclude Include="Inc\Chest.h" />
-    <ClInclude Include="Inc\Assets.h" />
-    <ClInclude Include="Inc\GameMenuState.h" />
-    <ClInclude Include="Inc\GameOverState.h" />
-    <ClInclude Include="Inc\Goblin.h" />
-    <ClInclude Include="Inc\GuideState.h" />
-    <ClInclude Include="Inc\Application.h" />
-    <ClInclude Include="Inc\Behaviour.h" />
-    <ClInclude Include="Inc\Demo1.h" />
-    <ClInclude Include="Inc\Demo2.h" />
-    <ClInclude Include="Inc\FleeBehaviour.h" />
-    <ClInclude Include="Inc\GameState.h" />
-    <ClInclude Include="Inc\GameObject.h" />
-    <ClInclude Include="Inc\GameStateManager.h" />
-    <ClInclude Include="Inc\Graph.h" />
-    <ClInclude Include="Inc\Graph2D.h" />
-    <ClInclude Include="Inc\Graph2DEditor.h" />
-    <ClInclude Include="Inc\KeyBoardBehaviour.h" />
-    <ClInclude Include="Inc\Ladder.h" />
-    <ClInclude Include="Inc\MenuState.h" />
-    <ClInclude Include="Inc\PauseState.h" />
-    <ClInclude Include="Inc\Player.h" />
-    <ClInclude Include="Inc\SeekBehaviour.h" />
-    <ClInclude Include="Inc\WonderBehaviour.h" />
-    <ClInclude Include="Inc\MainCharacter.h" />
-    <ClInclude Include="Inc\PatrolBehaviour.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Source\GoblinSeek.cpp" />
-    <ClCompile Include="Source\PatrolBehaviour.cpp" />
-    <ClCompile Include="Source\BlackBoard.cpp" />
-    <ClCompile Include="Source\Button.cpp" />
-    <ClCompile Include="Source\Chest.cpp" />
-    <ClCompile Include="Source\Goblin.cpp" />
-    <ClCompile Include="Source\Ladder.cpp" />
-    <ClCompile Include="Source\MainCharacter.cpp" />
-    <ClCompile Include="Source\Assets.cpp" />
-    <ClCompile Include="Source\GameMenuState.cpp" />
-    <ClCompile Include="Source\GameOverState.cpp" />
-    <ClCompile Include="Source\GuideState.cpp" />
-    <ClCompile Include="Source\Application.cpp" />
-    <ClCompile Include="Source\Demo1.cpp" />
-    <ClCompile Include="Source\Demo2.cpp" />
-    <ClCompile Include="Source\FleeBehaviour.cpp" />
-    <ClCompile Include="Source\GameState.cpp" />
-    <ClCompile Include="Source\GameObject.cpp" />
-    <ClCompile Include="Source\GameStateManager.cpp" />
-    <ClCompile Include="Source\Graph2D.cpp" />
-    <ClCompile Include="Source\Graph2DEditor.cpp" />
-    <ClCompile Include="Source\KeyBoardBehaviour.cpp" />
-    <ClCompile Include="Source\main.cpp" />
-    <ClCompile Include="Source\MenuState.cpp" />
-    <ClCompile Include="Source\PauseState.cpp" />
-    <ClCompile Include="Source\Player.cpp" />
-    <ClCompile Include="Source\SeekBehaviour.cpp" />
-    <ClCompile Include="Source\WonderBehaviour.cpp" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

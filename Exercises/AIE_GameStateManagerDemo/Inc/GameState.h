@@ -8,9 +8,11 @@ class GameStateManager;
 class Application;
 
 class GameObject;
+
 class MainCharacter;
 class LadderEntity;
 class Chest;
+class Goblin;
 
 class BlackBoard;
 
@@ -58,28 +60,23 @@ protected:
 private:
 	bool canEscape = false;
 	
-
+	Camera2D m_camera;
 	Vector2 m_playerPos = { 0.0f , 0.0f };
 
 	Application* m_app;
-
 	GameStateManager* m_gameStateManager = nullptr;
 
+	Graph2DEditor* m_graphEditor = nullptr;
 	Graph2D* m_graph = nullptr;
 
-	Camera2D m_camera;
+	BlackBoard* m_blackBoard = nullptr;
 
-	//game entities
-	//--------------------------------------
 	std::list<Chest*> m_chest;
-
-	std::list<GameObject*> m_goblinWand;
-
+	std::list<Goblin*> m_goblin;
 
 	LadderEntity* m_ladder = nullptr;
-
 	MainCharacter* m_mainCharacter = nullptr;
-	//---------------------------------------
 
-	BlackBoard* m_blackBoard = nullptr;
+
+	
 };

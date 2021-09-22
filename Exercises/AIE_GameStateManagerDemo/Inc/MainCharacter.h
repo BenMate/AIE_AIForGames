@@ -18,6 +18,8 @@ public:
 	void DrawCharacter();
 	void UpdatePlayerWallCollision(float deltaTime);
 
+
+	float m_chestRadius = 30.0f;
 protected:
 
 	KeyBoardBehaviour* m_KbBehaviour;

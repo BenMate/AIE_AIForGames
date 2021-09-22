@@ -5,21 +5,16 @@
 
 GameObject::GameObject()
 {
-	m_blackBoard = new BlackBoard();
 }
 
 GameObject::~GameObject()
 {
-	delete m_blackBoard;
-	m_blackBoard = nullptr;
 }
 
 void GameObject::Update(float deltaTime)
 {
 	if (m_behaviour != nullptr)
 		m_behaviour->Update(this, deltaTime);
-
-	//AddForce(-m_velocity * m_friction); // adds friction
 
 	ApplyForce(Vector2Scale(Vector2Negate(m_velocity), m_friction));
 
@@ -33,11 +28,10 @@ void GameObject::Draw()
 		m_behaviour->Draw(this);
 
 	Vector2 heading = Vector2Add(m_position, m_velocity);
-
-	//DrawCircle(m_position.x, m_position.y, 8, GRAY);
+	//where the player is heading
 	DrawLine(m_position.x, m_position.y, heading.x, heading.y, BLACK);
+	//where the player is currently being told to go
 	DrawLine(m_position.x, m_position.y, m_position.x + m_acceleration.x, m_position.y + m_acceleration.y, RED);
-
 
 	m_acceleration = { 0,0 };
 }

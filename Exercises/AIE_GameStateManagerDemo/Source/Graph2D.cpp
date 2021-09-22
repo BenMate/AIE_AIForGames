@@ -25,3 +25,18 @@ void Graph2D::GetNearbyNodes(Vector2 position, float radius, std::vector<Graph2D
 		}
 	}
 }
+
+Graph2D::Node* Graph2D::GetClosestNode(Vector2 position, float radius)
+{
+	std::vector<Graph2D::Node*> nearbyNodes;
+
+	GetNearbyNodes(position, radius, nearbyNodes);
+
+	if (nearbyNodes.empty())
+		return nullptr;
+
+	// TODO:
+	// return the node that is actually closest
+
+	return nearbyNodes[0];
+}

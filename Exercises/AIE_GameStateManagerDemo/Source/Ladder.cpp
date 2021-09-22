@@ -40,7 +40,7 @@ void LadderEntity::DrawLadder()
 
 bool LadderEntity::IsNearLadder()
 {
-	Vector2* playerPos = m_blackBoard->playersPos;
+	Vector2* playerPos = &m_blackBoard->playersPos;
 
 	if (playerPos == nullptr)
 		return false;

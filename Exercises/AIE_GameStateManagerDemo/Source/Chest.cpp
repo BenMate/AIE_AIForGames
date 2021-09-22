@@ -26,13 +26,14 @@ void Chest::Update(float deltaTime)
 
 void Chest::Draw()
 {
-	DrawChest();
 	GameObject::Draw();
+	DrawChest();
+	
 }
 
 bool Chest::UpdateOpenChest() 
 {
-	Vector2* playerPos = m_blackBoard->playersPos;
+	Vector2* playerPos = &m_blackBoard->playersPos;
 	
 
 	//checks if playerpos isnt updated;

@@ -26,7 +26,7 @@ void MainCharacter::Update(float deltaTime)
 	UpdatePlayerWallCollision(deltaTime);
 
 
-	m_blackBoard->SetPlayerPos(&m_position);
+	m_blackBoard->SetPlayerPos(m_position, false);
 }
 
 void MainCharacter::Draw()

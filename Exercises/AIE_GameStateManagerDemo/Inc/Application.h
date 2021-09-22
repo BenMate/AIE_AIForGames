@@ -7,6 +7,7 @@ class IGameState;
 class GameStateManager;
 
 class Player;
+class Goblin;
 
 class Application {
 
@@ -39,4 +40,5 @@ private:
 	GameStateManager* m_gameStateManager = nullptr;
 	
 	Player* m_player = nullptr;
+	Goblin* m_goblin = nullptr;
 };

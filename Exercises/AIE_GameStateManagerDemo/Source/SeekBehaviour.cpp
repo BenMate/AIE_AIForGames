@@ -26,13 +26,18 @@ void SeekBehaviour::Update(GameObject* obj, float deltaTime)
 	Vector2 heading = Vector2Add(obj->GetPosition(), obj->GetVelocity());
 	float headingLength = Vector2Length(heading);
 
-	Vector2 dirToTaget = Vector2Normalize(Vector2Subtract(m_target, obj->GetPosition()));
-	Vector2 vecToTarget = Vector2Scale(dirToTaget, headingLength);
 
-	Vector2 targetForcepos = Vector2Add(vecToTarget, obj->GetPosition());
-	Vector2 forceDir = Vector2Subtract(targetForcepos, heading);
 
-	obj->ApplyForce(forceDir);
+	if (distToTarget > 0)
+	{
+		Vector2 dirToTaget = Vector2Normalize(Vector2Subtract(m_target, obj->GetPosition()));
+		Vector2 vecToTarget = Vector2Scale(dirToTaget, headingLength);
+
+		Vector2 targetForcepos = Vector2Add(vecToTarget, obj->GetPosition());
+		Vector2 forceDir = Vector2Subtract(targetForcepos, heading);
+
+		obj->ApplyForce(forceDir);
+	}
 }
 
 void SeekBehaviour::Draw(GameObject* obj)

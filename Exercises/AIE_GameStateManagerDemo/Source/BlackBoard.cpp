@@ -1,6 +1,6 @@
 #include "BlackBoard.h"
 
-#include "GoblinWanderer.h"
+#include "Goblin.h"
 #include "MainCharacter.h"
 
 
@@ -15,7 +15,9 @@ BlackBoard::~BlackBoard()
 
 }
 
-void BlackBoard::SetPlayerPos(Vector2* pos)
+void BlackBoard::SetPlayerPos(Vector2 pos, bool posKnown)
 {
+	positionKnown = posKnown;
 	playersPos = pos;
 }
+

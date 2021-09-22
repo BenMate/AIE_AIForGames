@@ -18,7 +18,7 @@
 #include "Graph2DEditor.h"
 
 #include "MainCharacter.h"
-#include "GoblinWanderer.h"
+#include "Goblin.h"
 #include "Chest.h"
 #include "Ladder.h"
 
@@ -47,6 +47,7 @@ void GameState::Load()
 	m_camera.offset = { GetScreenWidth() / 2.0f ,GetScreenHeight() / 2.0f };
 
 	BuildGraphMap();
+
 }
 
 void GameState::Unload()
@@ -54,6 +55,9 @@ void GameState::Unload()
 	std::cout << "UnLoading GameState" << std::endl;
 
 	//delete all other entities
+
+	delete m_graph;
+	m_graph = nullptr;
 
 	delete m_blackBoard;
 	m_blackBoard = nullptr;
@@ -84,6 +88,7 @@ void GameState::Update(float deltaTime)
 
 	CanEscape();	
 	DidWinGame();
+
 }
 
 void GameState::Draw()
@@ -99,6 +104,7 @@ void GameState::Draw()
 	DrawEntities();
 
 	if (IsKeyDown(KEY_TAB)) DrawDebugGraph();
+	if (IsKeyDown(KEY_TAB)) m_graphEditor->Draw();
 
 	DrawText("GameState", 10, 10, 100, DARKGRAY);
 
@@ -109,7 +115,10 @@ void GameState::DrawDebugGraph()
 {
 	for (auto& node : m_graph->GetNodes())
 	{
-		if (IsInCameraView(node->data)) DrawCircle(node->data.x, node->data.y, 4, GRAY); 
+		if (IsInCameraView(node->data))
+		{
+			DrawCircle(node->data.x, node->data.y, 4, GRAY);
+		}
 	}
 }
 
@@ -125,6 +134,7 @@ void GameState::BuildGraphMap()
 	int numRows = MyAssets::worldBG.height / spacing;
 	int numCols = MyAssets::worldBG.width / spacing;
 
+	// Build graph nodes
 	for (int y = 0; y < numRows; y++) 
 	{
 		for (int x = 0; x < numCols; x++)
@@ -134,22 +144,11 @@ void GameState::BuildGraphMap()
 			auto color = MyAssets::GetImagePixel(MyAssets::colourBGRaw, xPos, yPos);
 
 			//spawns node on a walkable space
-			if (color != 0xFF000000) m_graph->AddNode({ xPos, yPos });
-
-			//Spawns chest on red
-			if (color == 0xFF0000FF) CreateChest({ xPos, yPos });
-
-			//spawn player on blue 
-			if (color == 0xFFFF0000) CreatePlayer({ xPos, yPos });
-
-			//spawn a ladder on blue
-			if (color == 0xFFFF0000) CreateLadder({ xPos, yPos });
-			
-			//spawn goblin on green
-			if (color == 0xFF00FF00) CreateGoblin({xPos, yPos});			
+			if (color != 0xFF000000) m_graph->AddNode({ xPos, yPos });		
 		}
 	}
 
+	// connect graph node edges
 	for (auto node : m_graph->GetNodes())
 	{
 		std::vector<Graph2D::Node*> nearbyNodes;
@@ -165,6 +164,33 @@ void GameState::BuildGraphMap()
 			m_graph->AddEdge(conncetedNode, node, dist);
 		}
 	}
+
+
+	// spawn objects
+	for (int y = 0; y < numRows; y++)
+	{
+		for (int x = 0; x < numCols; x++)
+		{
+			float xPos = (x * spacing) + xOffSet;
+			float yPos = (y * spacing) + yOffSet;
+			auto color = MyAssets::GetImagePixel(MyAssets::colourBGRaw, xPos, yPos);
+
+			//Spawns chest on red
+			if (color == 0xFF0000FF) CreateChest({ xPos, yPos });
+
+			//spawn player on blue 
+			if (color == 0xFFFF0000) CreatePlayer({ xPos, yPos });
+
+			//spawn a ladder on blue
+			if (color == 0xFFFF0000) CreateLadder({ xPos, yPos });
+
+			//spawn goblin on green
+			if (color == 0xFF00FF00) CreateGoblin({ xPos, yPos });
+		}
+	}
+
+	m_graphEditor = new Graph2DEditor();
+	m_graphEditor->SetGraph(m_graph);
 }
 
 void GameState::UpdateGameCamera(float deltaTime) 
@@ -201,19 +227,23 @@ GameObject* GameState::CreatePlayer(Vector2 pos)
 	m_mainCharacter->SetPosition(pos);
 	m_mainCharacter->SetBlackBoard(m_blackBoard);
 
+	m_mainCharacter->SetFriction(0.4f);
+	//m_mainCharacter->SetMaxForce(200.0f);
+
 	return m_mainCharacter;
 }
 
 GameObject* GameState::CreateGoblin(Vector2 pos) 
 {
-	GameObject* goblin = new GoblinWanderer();
+	Goblin* goblin = new Goblin(m_graph, m_blackBoard);
+	goblin->SetPosition(pos);
 
 	goblin->SetVelocity({0.0f,0.0f});
 	goblin->SetFriction(7.0f);
-	goblin->SetPosition(pos);
-	goblin->SetBlackBoard(m_blackBoard); 
-
-	m_goblinWand.push_back(goblin);
+	goblin->SetMaxForce(150.0f);
+	
+	
+	m_goblin.push_back(goblin);
 
 	return goblin;
 }
@@ -221,8 +251,10 @@ GameObject* GameState::CreateGoblin(Vector2 pos)
 GameObject* GameState::CreateLadder(Vector2 pos)
 {
 	m_ladder = new LadderEntity();
-	m_ladder->SetPosition(pos);
 	m_ladder->SetBlackBoard(m_blackBoard);
+
+	m_ladder->SetPosition(pos);
+	
 	
 	return m_ladder;
 }
@@ -249,14 +281,26 @@ void GameState::SetMaincharacter(MainCharacter* mainCharacter)
 
 void GameState::UpdateEntities(float deltaTime) 
 {
+	m_mainCharacter->Update(deltaTime);
+
 	for (auto chest : m_chest)
 		chest->Update(deltaTime);
 
-	for (auto goblin : m_goblinWand)
+	// update player position on blackboard
+	m_blackBoard->SetPlayerPos({ 0, 0 }, false);
+	for (auto goblin : m_goblin)
+	{
+		auto distanceToPlayer = Vector2Distance(m_mainCharacter->GetPosition(), goblin->GetPosition());
+		if (distanceToPlayer < goblin->m_goblinRadius)
+			m_blackBoard->SetPlayerPos(m_mainCharacter->GetPosition(), true);
+	}
+
+	// update goblines
+	for (auto goblin : m_goblin)
+	{
 		goblin->Update(deltaTime);
-
-	m_mainCharacter->Update(deltaTime);
-
+	}
+		
 	m_ladder->Update(deltaTime);
 }
 
@@ -265,7 +309,7 @@ void GameState::DrawEntities()
 	for (auto chest : m_chest)
 		chest->Draw();
 
-	for (auto goblin : m_goblinWand)
+	for (auto goblin : m_goblin)
 		goblin->Draw();
 
 	m_ladder->Draw();
@@ -294,6 +338,4 @@ void GameState::DidWinGame()
 	{
 		std::cout << "YOU WIN" << std::endl;
 	}
-	
-
 }

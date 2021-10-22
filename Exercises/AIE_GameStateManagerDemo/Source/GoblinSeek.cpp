@@ -21,7 +21,6 @@ GoblinSeekBehaviour::GoblinSeekBehaviour(Graph2D* graph, BlackBoard* blackboard)
 	m_graph = graph;
 	m_blackBoard = blackboard;
 	m_target = { 0,0 };
-
 }
 
 GoblinSeekBehaviour::~GoblinSeekBehaviour()
@@ -44,15 +43,17 @@ void GoblinSeekBehaviour::Update(GameObject* obj, float deltaTime)
 	if (m_path.empty() == false) 
 	{
 		//move target towards the first item in path
-		ApplySeekForce(m_path.front(), obj);
+		//ApplySeekForce(m_path.front(), obj);
+		
+		
 
 		//check to see if we are inside the radius of the first item
+
+
 
 		//if so apply seek force to the next target
 
 	}
-
-
 }
 
 void GoblinSeekBehaviour::Draw(GameObject* obj)
@@ -100,9 +101,21 @@ void GoblinSeekBehaviour::ApplySeekForce(Vector2 target, GameObject* obj)
 	
 	//finds where the obj wants to go
 	Vector2 heading = Vector2Add(obj->GetPosition(), obj->GetVelocity());
-	float headingLen = Vector2Length(heading);
+	float headingLen = Vector2Length(Vector2Subtract(heading, obj->GetPosition()));
 	
 	//gets the direction of target
+	
+	
+	float distToTarget = Vector2Distance(target, obj->GetPosition());
+	
+	// assume if we are half a tile away from the target, than we have arrived.
+	if (distToTarget < 16)
+	{
+		// we are at the target position - dont apply a force
+		// also prevents divide by zero error if trying to normalise.
+		return;
+	}
+
 	Vector2 dirToTarget = Vector2Normalize(Vector2Subtract(target, obj->GetPosition()));
 	Vector2 vecToTarget = Vector2Scale(dirToTarget, headingLen);
 

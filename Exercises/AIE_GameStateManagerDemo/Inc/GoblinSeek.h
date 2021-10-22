@@ -4,6 +4,7 @@
 #include "raymath.h"
 #include <functional>
 #include <list>
+#include <vector>
 
 class Graph2D;
 class BlackBoard;
@@ -40,10 +41,9 @@ protected:
 
 	std::function<void()> m_onArriveFn;
 
-	std::list<Vector2> m_path;
-	std::list<Vector2>::iterator m_iter;
-	std::list<Vector2> m_patrolPath;
-
+	std::vector<Vector2> m_path;
+	std::vector<Vector2>::iterator m_iter;
+	
 	Graph2D* m_graph = nullptr;
 	BlackBoard* m_blackBoard = nullptr;
 private:

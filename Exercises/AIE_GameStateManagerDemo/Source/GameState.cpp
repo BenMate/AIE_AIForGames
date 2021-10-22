@@ -235,13 +235,15 @@ GameObject* GameState::CreatePlayer(Vector2 pos)
 
 GameObject* GameState::CreateGoblin(Vector2 pos) 
 {
+	if (m_goblin.empty() == false)
+		return nullptr;
+
 	Goblin* goblin = new Goblin(m_graph, m_blackBoard);
 	goblin->SetPosition(pos);
 
 	goblin->SetVelocity({0.0f,0.0f});
 	goblin->SetFriction(7.0f);
 	goblin->SetMaxForce(150.0f);
-	
 	
 	m_goblin.push_back(goblin);
 
@@ -287,7 +289,7 @@ void GameState::UpdateEntities(float deltaTime)
 		chest->Update(deltaTime);
 
 	// update player position on blackboard
-	m_blackBoard->SetPlayerPos({ 0, 0 }, false);
+	m_blackBoard->SetPlayerPos(m_mainCharacter->GetPosition(), false);
 	for (auto goblin : m_goblin)
 	{
 		auto distanceToPlayer = Vector2Distance(m_mainCharacter->GetPosition(), goblin->GetPosition());

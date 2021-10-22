@@ -82,6 +82,7 @@ Behaviour* Goblin::CalculateBehaviour()
 {
 
 	// temp:
+	m_goblinSeekBehaviour->SetTarget(m_blackBoard->playersPos);
 	return m_goblinSeekBehaviour;
 
 	if (IsPlayerPositionKnown()) 

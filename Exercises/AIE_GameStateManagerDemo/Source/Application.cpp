@@ -56,6 +56,12 @@ void Application::Run()
 	while (!WindowShouldClose())
 	{
 		float deltaTime = GetFrameTime();
+
+		// prevent deltaTime from running slower than 12fps.
+		// used to prevent debug mode from generating large deltaTime values.
+		if (deltaTime > 1.0f / 12.0f)
+			deltaTime = 1.0f / 12.0f;
+
 		Update(deltaTime);
 		Draw();
 	}

@@ -47,11 +47,9 @@ bool LadderEntity::IsNearLadder()
 	
 	float playerladderDistance = Vector2Distance(*playerPos, GetPosition()); 
 
-	if (playerladderDistance < m_LadderRadius)
-	{
+	if (playerladderDistance < m_LadderRadius)	
 		return true;
-
-	}
+	
 
 	return false;
 }

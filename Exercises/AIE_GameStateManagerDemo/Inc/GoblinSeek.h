@@ -30,7 +30,7 @@ public:
 
 	void OnArrive(std::function<void()>callback);
 
-
+	int GetClosestPoint(std::vector<Vector2> points, Vector2 target);
 	void CalculateSeekPath(GameObject* obj);
 	void SetGraph(Graph2D* graph);
 

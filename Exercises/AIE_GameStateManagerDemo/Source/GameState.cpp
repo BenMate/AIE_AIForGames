@@ -235,8 +235,11 @@ GameObject* GameState::CreatePlayer(Vector2 pos)
 
 GameObject* GameState::CreateGoblin(Vector2 pos) 
 {
+	//this is a test to make only 1 goblin spawn, delete this to continue to make more
+	//-----------------------------------------------
 	if (m_goblin.empty() == false)
 		return nullptr;
+	//-----------------------------------------------
 
 	Goblin* goblin = new Goblin(m_graph, m_blackBoard);
 	goblin->SetPosition(pos);
@@ -339,5 +342,11 @@ void GameState::DidWinGame()
 	if (m_ladder->IsNearLadder() == true && canEscape == true) 
 	{
 		std::cout << "YOU WIN" << std::endl;
+
+		//changes gamestate to gameover state. 
+		m_app->GetGameStateManager()->SetState("GameState", new GameState(m_app));
+		m_app->GetGameStateManager()->PopState();
+		m_app->GetGameStateManager()->PushState("GameOver");
+
 	}
 }

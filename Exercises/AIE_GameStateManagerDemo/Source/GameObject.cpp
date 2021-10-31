@@ -29,9 +29,9 @@ void GameObject::Draw()
 
 	Vector2 heading = Vector2Add(m_position, m_velocity);
 	//where the player is heading
-	DrawLine(m_position.x, m_position.y, heading.x, heading.y, BLACK);
+	//DrawLine(m_position.x, m_position.y, heading.x, heading.y, BLACK);
 	//where the player is currently being told to go
-	DrawLine(m_position.x, m_position.y, m_position.x + m_acceleration.x, m_position.y + m_acceleration.y, RED);
+	//DrawLine(m_position.x, m_position.y, m_position.x + m_acceleration.x, m_position.y + m_acceleration.y, RED);
 
 	m_acceleration = { 0,0 };
 }

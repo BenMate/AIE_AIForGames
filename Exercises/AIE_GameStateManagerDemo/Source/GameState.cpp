@@ -117,7 +117,7 @@ void GameState::DrawDebugGraph()
 	{
 		if (IsInCameraView(node->data))
 		{
-			DrawCircle(node->data.x, node->data.y, 4, GRAY);
+			DrawCircle(node->data.x, node->data.y, 4, GREEN);
 		}
 	}
 }
@@ -235,17 +235,11 @@ GameObject* GameState::CreatePlayer(Vector2 pos)
 
 GameObject* GameState::CreateGoblin(Vector2 pos) 
 {
-	//this is a test to make only 1 goblin spawn, delete this to continue to make more
-	//-----------------------------------------------
-	if (m_goblin.empty() == false)
-		return nullptr;
-	//-----------------------------------------------
-
 	Goblin* goblin = new Goblin(m_graph, m_blackBoard);
-	goblin->SetPosition(pos);
 
+	goblin->SetPosition(pos);
 	goblin->SetVelocity({0.0f,0.0f});
-	goblin->SetFriction(7.0f);
+	goblin->SetFriction(20.0f);
 	goblin->SetMaxForce(150.0f);
 	
 	m_goblin.push_back(goblin);

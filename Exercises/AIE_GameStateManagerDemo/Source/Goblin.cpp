@@ -64,7 +64,7 @@ void Goblin::Draw()
 
 	GameObject::Draw();
 
-	DrawCircle(m_position.x, m_position.y, m_goblinRadius, RED);
+	DrawCircle(m_position.x, m_position.y, m_goblinRadius, { 230, 41, 55, 30 });
 
 	DrawTexturePro(MyAssets::goblinWand, goblinsourceRec, goblindestRec, goblinorigin, 0.0f, WHITE);
 

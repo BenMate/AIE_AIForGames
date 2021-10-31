@@ -16,6 +16,8 @@
 #include <iostream>
 
 #include <math.h>
+#include <algorithm>
+#include <iterator>
 
 
 GoblinSeekBehaviour::GoblinSeekBehaviour(Graph2D* graph, BlackBoard* blackboard) : Behaviour()
@@ -32,27 +34,31 @@ GoblinSeekBehaviour::~GoblinSeekBehaviour()
 
 void GoblinSeekBehaviour::Update(GameObject* obj, float deltaTime)
 {
-	CalculateSeekPath(obj);
+	//TODO: check if the goblin reaches the player and stop looping. 
 
-	//TODO:
-	// move object to first point in the path
-	// create a function "ApplySeekForce(point)" that applies a force in the desired direction - see your seek demo for logic
-	// 
-	//seek to the desired index - closest point of paths 
-	//
+	CalculateSeekPath(obj);	
 
-	//if there is now a path to follow 
-	if (m_path.empty() == false) 
+	//if a path has been created 
+	if (m_path.empty() == false)
 	{
 		int closestPoint = GetClosestPoint(m_path, obj->GetPosition());
-		ApplySeekForce(m_path[closestPoint + 3], obj);
+
+		if (closestPoint + 1 >= m_path.size())
+		{
+			m_path.clear();
+			return;
+		}
+
+		ApplySeekForce(m_path[closestPoint + 1], obj);
+	
+
 	}
 }
 
 void GoblinSeekBehaviour::Draw(GameObject* obj)
 {
-	DrawCircle(m_target.x, m_target.y, m_targetRadius, LIGHTGRAY);
-	DrawCircle(m_target.x, m_target.y, 5, GRAY);
+	//DrawCircle(m_target.x, m_target.y, m_targetRadius, GREEN);
+	//DrawCircle(m_target.x, m_target.y, 5, GREEN);
 }
 
 void GoblinSeekBehaviour::CalculateSeekPath(GameObject* obj)
@@ -66,8 +72,8 @@ void GoblinSeekBehaviour::CalculateSeekPath(GameObject* obj)
 		return;
 	
 	// Generate a new path	
-	auto currentNode = m_graph->GetClosestNode(obj->GetPosition(), 20);
-	auto endNode = m_graph->GetClosestNode(m_blackBoard->playersPos, 20);
+	auto currentNode = m_graph->GetClosestNode(obj->GetPosition(), 30);
+	auto endNode = m_graph->GetClosestNode(m_blackBoard->playersPos, 30);
 
 	//creates a path using dijkstra
 	auto path = m_graph->FindPath(IGraph::SearchType::DIJKSTRA, currentNode, [&](Graph<Vector2, float>::Node* n) {
@@ -88,14 +94,11 @@ void GoblinSeekBehaviour::CalculateSeekPath(GameObject* obj)
 
 void GoblinSeekBehaviour::ApplySeekForce(Vector2 target, GameObject* obj) 
 {	
-	//todo: fix the math for this??
-	
 	//finds where the obj wants to go
 	Vector2 heading = Vector2Add(obj->GetPosition(), obj->GetVelocity());
-	float headingLen = Vector2Length(Vector2Subtract(heading, obj->GetPosition()));
+	float headingLen = Vector2Length(heading);
 	
-	//gets the direction of target
-	
+	//gets the direction of target	
 	float distToTarget = Vector2Distance(target, obj->GetPosition());
 	
 	// assume if we are half a tile away from the target, than we have arrived.
@@ -149,17 +152,21 @@ void GoblinSeekBehaviour::SetGraph(Graph2D* graph)
 int GoblinSeekBehaviour::GetClosestPoint(std::vector<Vector2> points, Vector2 target) 
 {
 	//TODO: Return index value of the point that is closest to the target.
-	float distance;
+	float distance = 0;
 
+	std::vector<int> arr;
+
+	//updates a vector of distances
 	for (int i = 0; i < points.size(); i++)
-	{
-		//calculate the distance of each point to the target
+	{		
 		distance = sqrt(pow((points[i].x - target.x), 2) + 
 						pow((points[i].y - target.y), 2) * 1.0);
 
-		//store is distance in a list
-		//what ever is smaller return that index
+		arr.push_back(distance);		
 	}
 
-	return 0;
+
+	//returns the index of the smallest distance
+	auto minDistanceIndex = std::min_element(arr.begin(), arr.end()) - arr.begin();
+	return minDistanceIndex;
 }

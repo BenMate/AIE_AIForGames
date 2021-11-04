@@ -1,6 +1,9 @@
 #include "WonderBehaviour.h"
 #include "GameObject.h"
 
+#include <iostream>
+
+
 
 WanderBehaviour::WanderBehaviour() : Behaviour()
 {
@@ -12,37 +15,43 @@ WanderBehaviour::~WanderBehaviour()
 
 }
 
+void WanderBehaviour::Begin(GameObject* obj)
+{
+	GenerateNewWanderTarget(obj);
+}
+
 void WanderBehaviour::Update(GameObject* obj, float deltaTime)
 {
-	//float Gap = 15;
-	//float DistanceToWwanderPoint = Vector2Length(Vector2Subtract(m_wanderPoint, obj->GetPosition()));
-	//
-	//if (DistanceToWwanderPoint < Gap || Vector2Length(obj->GetVelocity()) == 0) //not moving or they reached target
-	//{ 
-	//	Vector2 newVelocity = { 1, 1 };
-
-	//	if (Vector2Length(obj->GetVelocity()) == 1) obj->SetVelocity(newVelocity);
-
-	//	WanderCentre = obj->GetPosition(); //get a pos for the wc
-	//	auto angle = (rand() % 360) * PI / 180.0f;
-	//	Vector2 displace = { sin(angle) * m_targetRadius, cos(angle) * m_targetRadius };
-	//	Vector2 wp = Vector2Add(WanderCentre, displace);
-	//	m_wanderCenter = obj->GetPosition();
-	//	m_wanderPoint = wp;
-	//}
-	//Vector2 wanderTD = Vector2Scale(Vector2Normalize(Vector2Subtract(m_wanderPoint, obj->GetPosition())),
-	//	obj->GetMaxForce());
-
-	//	obj->ApplyForce(wanderTD);
-
+	float gap = 5;
+	float DistanceToWanderPoint = Vector2Length(Vector2Subtract(m_wanderPoint, obj->GetPosition()));
 	
+	// Goblin reached target
+	if (DistanceToWanderPoint < gap) 
+	{ 
+		
+		
+		GenerateNewWanderTarget(obj);
+
+
+	}
+		Vector2 wanderTD = Vector2Scale(Vector2Normalize(Vector2Subtract(m_wanderPoint, obj->GetPosition())), obj->GetMaxForce());
+
+		obj->ApplyForce(wanderTD);	
 }
 
 void WanderBehaviour::Draw(GameObject* obj)
 {
 	
+	DrawCircle(m_wanderPoint.x,m_wanderPoint.y, 5, GREEN);
 
+}
 
+void WanderBehaviour::GenerateNewWanderTarget(GameObject* obj)
+{
+	m_wanderCenter = obj->GetPosition(); //get a pos for the wc
+	auto angle = (rand() % 360) * PI / 180.0f;
+	Vector2 displace = { sin(angle) * m_targetRadius, cos(angle) * m_targetRadius };
+	m_wanderPoint = Vector2Add(m_wanderCenter, displace);
 }
 
 const Vector2& WanderBehaviour::GetTarget() const
@@ -67,4 +76,14 @@ void WanderBehaviour::SetTargetRadius(const float& radius)
 void WanderBehaviour::OnArrive(std::function<void()> callback)
 {
 	m_onArriveFn = callback;
+}
+
+void WanderBehaviour::CalculateWanderPath()
+{
+
+}
+
+void WanderBehaviour::ApplyWanderForce() 
+{
+
 }

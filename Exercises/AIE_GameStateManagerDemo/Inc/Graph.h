@@ -138,6 +138,11 @@ public:
 	// ===========================================================================
 	std::list<Node*> FindPath(SearchType type, Node* startNode, std::function<bool(Node* n)> processNode)
 	{
+		// return empty list - we cannot find a path
+		// if the start node is unknown - should probably throw an exception
+		if (startNode == nullptr)
+			return std::list<Node*>();
+
 		std::list<PFNode*> stack; //open list
 		std::list<PFNode*> visited; //close list
 		std::list<Node*> path;

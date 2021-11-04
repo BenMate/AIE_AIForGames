@@ -19,12 +19,11 @@ Goblin::Goblin(Graph2D* graph, BlackBoard* blackboard) : GameObject()
 	m_goblinSeekBehaviour = new GoblinSeekBehaviour(m_graph, m_blackBoard);
 	m_goblinSeekBehaviour->SetTargetRadius(50);
 
-	//m_wanderBehaviour = new WanderBehaviour();
+	m_wanderBehaviour = new WanderBehaviour();
+	m_wanderBehaviour->SetTargetRadius(50);
 	
-	//m_patrolBehaviour = new PatrolBehaviour();
-	//m_patrolBehaviour->SetGraph(m_graph);
-	//m_patrolBehaviour->CalculatePatrolPath(this);
-
+	m_patrolBehaviour = new PatrolBehaviour(m_graph);
+	m_patrolBehaviour->SetGraph(m_graph);
 }
 
 Goblin::~Goblin()
@@ -48,7 +47,13 @@ void Goblin::Update(float deltaTime)
 
 	if (currentBehaviour != desiredBehaviour)
 	{
+		if(currentBehaviour != nullptr)
+			currentBehaviour->End(this);
+
 		SetBehaviour(desiredBehaviour);		
+
+		if(desiredBehaviour != nullptr)
+			desiredBehaviour->Begin(this);
 	}
 
 	GameObject::Update(deltaTime);
@@ -56,8 +61,6 @@ void Goblin::Update(float deltaTime)
 
 void Goblin::Draw()
 {
-	
-
 	Rectangle goblinsourceRec = { 0.0f ,0.0f ,19.0f ,24.0f };
 	Rectangle goblindestRec = { m_position.x, m_position.y, 19.0f ,24.0f };
 	Vector2   goblinorigin = { 9.5,12 };
@@ -80,11 +83,6 @@ void Goblin::Draw()
 
 Behaviour* Goblin::CalculateBehaviour()
 {
-
-	// temp:
-	m_goblinSeekBehaviour->SetTarget(m_blackBoard->playersPos);
-	return m_goblinSeekBehaviour;
-
 	if (IsPlayerPositionKnown()) 
 	{
 		m_goblinSeekBehaviour->SetTarget(m_blackBoard->playersPos);  

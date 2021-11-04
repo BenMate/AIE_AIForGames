@@ -4,6 +4,7 @@
 #include "raymath.h"
 #include <functional>
 #include <list>
+#include <vector>
 
 class Graph2D;
 
@@ -11,7 +12,7 @@ class PatrolBehaviour : public Behaviour
 {
 public:
 
-	PatrolBehaviour();
+	PatrolBehaviour(Graph2D* graph);
 
 	virtual ~PatrolBehaviour();
 
@@ -28,23 +29,24 @@ public:
 
 	void CalculatePatrolPath(GameObject* obj);
 	void SetGraph(Graph2D* graph);
+	int GetClosestPoint(std::vector<Vector2> points, Vector2 target);
+
+	void ApplyPatrolForce(Vector2 target, GameObject* obj);
 
 protected:
 
 	Vector2 m_target;
-	Vector2 WanderCentre;
-	Vector2 m_wanderCenter;
-	Vector2 m_wanderPoint;
+	float m_targetRadius = 2.0f;
 
-	float m_targetRadius = 1.0f;
+	int m_patrolPathDir = 1;
 
 	std::function<void()> m_onArriveFn;
 
-	std::list<Vector2> m_path;
-	std::list<Vector2>::iterator m_iter;
-	std::list<Vector2> m_patrolPath;
+	std::vector<Vector2>::iterator m_iter;
+	std::vector<Vector2> m_patrolPath;
 
 	Graph2D* m_graph = nullptr;
+	
 
 private:
 };

@@ -240,7 +240,7 @@ GameObject* GameState::CreateGoblin(Vector2 pos)
 	goblin->SetPosition(pos);
 	goblin->SetVelocity({0.0f,0.0f});
 	goblin->SetFriction(20.0f);
-	goblin->SetMaxForce(150.0f);
+	goblin->SetMaxForce(350.0f);
 	
 	m_goblin.push_back(goblin);
 

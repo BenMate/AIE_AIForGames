@@ -12,6 +12,8 @@ public:
 
 	virtual ~WanderBehaviour();
 
+	virtual void Begin(GameObject* obj);
+
 	virtual void Update(GameObject* obj, float deltaTime);
 	virtual void Draw(GameObject* obj);
 
@@ -23,14 +25,20 @@ public:
 
 	void OnArrive(std::function<void()>callback);
 
+	void CalculateWanderPath();
+	void ApplyWanderForce();
+
 protected:
 
+	void GenerateNewWanderTarget(GameObject* obj);
+
+private:
+
 	Vector2 m_target;
-	Vector2 WanderCentre;
 	Vector2 m_wanderCenter;
 	Vector2 m_wanderPoint;
 
-	float m_targetRadius = 1.0f;
+	float m_targetRadius = 30.0f;
 
 	std::function<void()> m_onArriveFn;
 

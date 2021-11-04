@@ -48,10 +48,8 @@ void GoblinSeekBehaviour::Update(GameObject* obj, float deltaTime)
 			m_path.clear();
 			return;
 		}
-
 		ApplySeekForce(m_path[closestPoint + 1], obj);
 	
-
 	}
 }
 
@@ -151,6 +149,23 @@ void GoblinSeekBehaviour::SetGraph(Graph2D* graph)
 
 int GoblinSeekBehaviour::GetClosestPoint(std::vector<Vector2> points, Vector2 target) 
 {
+
+	//float minDistance = 0;
+	//int minIndex = 0;
+
+	//for (int i = 0; i < points.size(); i++)
+	//{
+	//	auto dist = Vector2Distance(points[i], target);
+	//	if (dist < minDistance)
+	//	{
+	//		minDistance = dist;
+	//		minIndex = i;
+	//	}
+	//}
+
+	//return minIndex;
+
+
 	//TODO: Return index value of the point that is closest to the target.
 	float distance = 0;
 

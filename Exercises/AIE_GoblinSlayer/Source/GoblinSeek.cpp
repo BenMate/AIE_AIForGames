@@ -54,8 +54,7 @@ void GoblinSeekBehaviour::Update(GameObject* obj, float deltaTime)
 }
 
 void GoblinSeekBehaviour::Draw(GameObject* obj)
-{
-	//DrawCircle(m_target.x, m_target.y, m_targetRadius, GREEN);
+{	
 	//DrawCircle(m_target.x, m_target.y, 5, GREEN);
 }
 

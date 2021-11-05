@@ -23,7 +23,10 @@ public:
 	virtual void Draw();
 
 	bool IsPlayerPositionKnown();
+	void UpdateBehavior();
 
+	void UpdateAlphaColour(float deltaTime);
+	bool PlayerCaught();
 
 	Behaviour* CalculateBehaviour();
 
@@ -33,6 +36,8 @@ protected:
 
 	bool m_IsPlayerPositionKnown = false;
 	bool m_wanderer = rand() % 2 == 0;
+
+	int m_alpha = 30;
 
 	GoblinSeekBehaviour* m_goblinSeekBehaviour;
 	WanderBehaviour* m_wanderBehaviour;

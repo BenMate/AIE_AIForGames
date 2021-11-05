@@ -88,7 +88,7 @@ void GameState::Update(float deltaTime)
 
 	CanEscape();	
 	DidWinGame();
-
+	GotCaught();
 }
 
 void GameState::Draw()
@@ -341,6 +341,20 @@ void GameState::DidWinGame()
 		m_app->GetGameStateManager()->SetState("GameState", new GameState(m_app));
 		m_app->GetGameStateManager()->PopState();
 		m_app->GetGameStateManager()->PushState("GameOver");
-
 	}
+}
+
+void GameState::GotCaught() 
+{
+	//if any goblin "catches" the player end game
+	for (auto g : m_goblin)
+	{
+		if (g->PlayerCaught() == true) 
+		{
+			//changes gamestate to gameover state. 
+			m_app->GetGameStateManager()->SetState("GameState", new GameState(m_app));
+			m_app->GetGameStateManager()->PopState();
+			m_app->GetGameStateManager()->PushState("GameOver");
+		}
+	}	
 }

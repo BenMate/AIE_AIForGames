@@ -54,6 +54,7 @@ public:
 	void DrawEntities();
 
 	void DidWinGame();
+	void GotCaught();
 	
 protected:
 
@@ -75,8 +76,5 @@ private:
 	std::list<Goblin*> m_goblin;
 
 	LadderEntity* m_ladder = nullptr;
-	MainCharacter* m_mainCharacter = nullptr;
-
-
-	
+	MainCharacter* m_mainCharacter = nullptr;	
 };

@@ -53,7 +53,13 @@ void PatrolBehaviour::Update(GameObject* obj, float deltaTime)
 
 void PatrolBehaviour::Draw(GameObject* obj)
 {
-
+	if (IsKeyDown(KEY_TAB))
+	{
+		for (auto& c : m_patrolPath)
+		{
+			DrawCircle(c.x, c.y, 10, RED);
+		}
+	}
 }
 
 void PatrolBehaviour::SetGraph(Graph2D* graph)

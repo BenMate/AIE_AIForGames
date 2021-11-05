@@ -27,12 +27,8 @@ void WanderBehaviour::Update(GameObject* obj, float deltaTime)
 	
 	// Goblin reached target
 	if (DistanceToWanderPoint < gap) 
-	{ 
-		
-		
+	{ 	
 		GenerateNewWanderTarget(obj);
-
-
 	}
 		Vector2 wanderTD = Vector2Scale(Vector2Normalize(Vector2Subtract(m_wanderPoint, obj->GetPosition())), obj->GetMaxForce());
 
@@ -41,9 +37,11 @@ void WanderBehaviour::Update(GameObject* obj, float deltaTime)
 
 void WanderBehaviour::Draw(GameObject* obj)
 {
+	if (IsKeyDown(KEY_TAB))
+	{
+		DrawCircle(m_wanderPoint.x, m_wanderPoint.y, 10, GREEN);
+	}
 	
-	DrawCircle(m_wanderPoint.x,m_wanderPoint.y, 5, GREEN);
-
 }
 
 void WanderBehaviour::GenerateNewWanderTarget(GameObject* obj)
@@ -76,14 +74,4 @@ void WanderBehaviour::SetTargetRadius(const float& radius)
 void WanderBehaviour::OnArrive(std::function<void()> callback)
 {
 	m_onArriveFn = callback;
-}
-
-void WanderBehaviour::CalculateWanderPath()
-{
-
-}
-
-void WanderBehaviour::ApplyWanderForce() 
-{
-
 }

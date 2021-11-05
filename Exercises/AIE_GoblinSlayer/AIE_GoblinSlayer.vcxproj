@@ -21,7 +21,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{743cde7d-7e54-4c8c-95f3-2a1fe0b356dc}</ProjectGuid>
+    <ProjectGuid>{C241D761-0D77-4430-B852-846E0DADE343}</ProjectGuid>
     <RootNamespace>AIEGameStateManagerDemo</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>

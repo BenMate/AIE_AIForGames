@@ -16,11 +16,6 @@ void GameObject::Update(float deltaTime)
 	if (m_behaviour != nullptr)
 		m_behaviour->Update(this, deltaTime);
 
-
-	//m_velocity =+ m_acceleration * deltaTime; 
-	//m_position += m_velocity * deltaTime;
-	//AddForce(-m_velocity * m_friction); // adds friction
-
 	ApplyForce(Vector2Scale(Vector2Negate(m_velocity),m_friction) );
 
 	m_velocity = Vector2Add(m_velocity, Vector2Scale(m_acceleration, deltaTime));
@@ -41,8 +36,7 @@ void GameObject::Draw()
 }
 
 void GameObject::ApplyForce(const Vector2& force)
-{
-	//m_accerlleration += force;
+{	
 	m_acceleration = Vector2Add(m_acceleration, force);
 }
 

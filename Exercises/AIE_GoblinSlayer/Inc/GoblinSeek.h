@@ -34,6 +34,8 @@ public:
 	void CalculateSeekPath(GameObject* obj);
 	void SetGraph(Graph2D* graph);
 
+	
+
 protected:
 
 	Vector2 m_target;

@@ -24,6 +24,8 @@
 
 #include "BlackBoard.h"
 
+#include <string>
+
 
 GameState::GameState(Application* app) : m_app(app)
 {
@@ -89,6 +91,8 @@ void GameState::Update(float deltaTime)
 	CanEscape();	
 	DidWinGame();
 	GotCaught();
+
+
 }
 
 void GameState::Draw()
@@ -109,6 +113,14 @@ void GameState::Draw()
 	DrawText("GameState", 10, 10, 100, DARKGRAY);
 
 	EndMode2D();
+
+	
+	//convert int to const char
+	std::string s = std::to_string(m_blackBoard->score);
+	char const* chestScore = s.c_str();
+	//draw score
+	DrawText("Score : ", 10, 10, 60, GREEN);
+	DrawText(chestScore, 250, 10, 60, GREEN);
 }
 
 void GameState::DrawDebugGraph() 
@@ -358,3 +370,4 @@ void GameState::GotCaught()
 		}
 	}	
 }
+

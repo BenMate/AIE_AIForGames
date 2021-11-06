@@ -1,6 +1,5 @@
 #include "GameOverState.h"
 #include "raylib.h"
-
 #include "Application.h"
 
 #include "GameStateManager.h"
@@ -12,7 +11,7 @@
 
 #include <iostream>
 #include <string>
-
+#include "Assets.h"
 
 
 GameOverState::GameOverState(Application* app) : m_app(app)
@@ -35,6 +34,8 @@ void GameOverState::Load()
 		m_app->GetGameStateManager()->PopState();
 		m_app->GetGameStateManager()->PushState("GameMenu");
 		});
+
+	m_blackBoard = new BlackBoard();
 }
 
 void GameOverState::Unload()
@@ -54,20 +55,20 @@ void GameOverState::Update(float deltaTime)
 		m_app->GetGameStateManager()->PopState();
 		m_app->GetGameStateManager()->PushState("GameMenu");
 	}
-
-
 }
 
 void GameOverState::Draw()
 {
+	ClearBackground(GRAY);
+	DrawRectangle(20, 20, 1550, 850, RAYWHITE);
 	/*int score = m_blackboard->score;
 
 	std::string str = std::to_string(score);
 	char const* pchar = str.c_str();
 	DrawText(pchar, 20, 20, 20, BLACK);*/
-
-	DrawText("GameOverState", 100, 100, 50, GRAY);
+	DrawText("GameOverState", 160, 20, 30, GRAY);
+	DrawText("Click here", 160, 150, 30, GRAY);
+	DrawText("Thanks for playing :)", 160, 600, 50, GRAY);
 
 	m_menuButton->Draw();
-
 }

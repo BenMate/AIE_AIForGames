@@ -14,6 +14,8 @@ public:
 
 	void DrawChest();
 	bool UpdateOpenChest();
+
+	int GetScore();
 	
 
 	float m_chestRadius = 30.0f;
@@ -21,6 +23,8 @@ public:
 protected:
 
 	bool OpenChest = false;
+
+	int m_score = 0;
 
 private:
 

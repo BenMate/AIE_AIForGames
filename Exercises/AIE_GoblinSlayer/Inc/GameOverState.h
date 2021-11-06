@@ -8,8 +8,6 @@ class Application;
 class Button;
 class BlackBoard;
 
-
-
 class GameOverState : public IGameState
 {
 
@@ -38,5 +36,5 @@ private:
 
 	Button* m_menuButton;
 
-	BlackBoard* m_blackboard;
+	BlackBoard* m_blackBoard = nullptr;
 };

@@ -41,8 +41,6 @@ void GuideState::Update(float deltaTime)
 		m_app->GetGameStateManager()->PopState();
 		m_app->GetGameStateManager()->PushState("GameMenu");
 	}
-
-
 }
 
 void GuideState::Draw()
@@ -50,8 +48,15 @@ void GuideState::Draw()
 	DrawText("GuideState", 10, 10, 20, GRAY);
 	DrawText("Press M to go back to Menu", 10, 50, 20, GRAY);
 
-
-
-
+	DrawText("Controls!", 10, 100, 30, DARKGRAY);
+	DrawText("Press t to quit", 10, 125, 20, GRAY);
+	DrawText("Press p to pause", 10 , 150, 20 , GRAY);
+	DrawText("Press W, A, S, D to move", 10, 175, 20, GRAY);
+	
+	DrawText("Gameplay!", 10, 240, 30, DARKGRAY);
+	DrawText("Try to Remain hidden! If you're caught, you lose!", 10, 275, 20, RED);
+	DrawText("Collect your gold back from chests and leave.", 10, 300, 20, GRAY);
+	DrawText("You dropped your sword on the way down and it broke ", 10, 325, 20, GRAY);
+	DrawText("So you cant fight back :(", 10, 350, 20, GRAY);
 
 }

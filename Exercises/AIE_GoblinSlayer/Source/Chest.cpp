@@ -71,3 +71,9 @@ void Chest::DrawChest()
 	Texture2D chest = OpenChest ? MyAssets::chestO : MyAssets::chestC; // chest gets updated when openchest = true;
 	DrawTexturePro(chest, chestSourceRec, chestDestRec, chestOrigin, 0.0f, WHITE);
 }
+
+int Chest::GetScore() 
+{
+	m_score = m_blackBoard->score;
+	return m_score;
+}

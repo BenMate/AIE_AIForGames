@@ -175,6 +175,7 @@
     <ClInclude Include="Inc\Graph.h" />
     <ClInclude Include="Inc\Graph2D.h" />
     <ClInclude Include="Inc\Graph2DEditor.h" />
+    <ClInclude Include="Inc\IGameState.h" />
     <ClInclude Include="Inc\KeyBoardBehaviour.h" />
     <ClInclude Include="Inc\Ladder.h" />
     <ClInclude Include="Inc\MenuState.h" />
@@ -191,7 +192,9 @@
     <ClCompile Include="Source\BlackBoard.cpp" />
     <ClCompile Include="Source\Button.cpp" />
     <ClCompile Include="Source\Chest.cpp" />
-    <ClCompile Include="Source\Goblin.cpp" />
+    <ClCompile Include="Source\Goblin.cpp">
+      <DeploymentContent>false</DeploymentContent>
+    </ClCompile>
     <ClCompile Include="Source\Ladder.cpp" />
     <ClCompile Include="Source\MainCharacter.cpp" />
     <ClCompile Include="Source\Assets.cpp" />

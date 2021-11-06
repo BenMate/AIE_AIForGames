@@ -30,8 +30,9 @@ void MainCharacter::Update(float deltaTime)
 
 void MainCharacter::Draw()
 {	
-	DrawCharacter();
 	GameObject::Draw();
+	DrawCharacter();
+	
 }
 
 void MainCharacter::DrawCharacter()

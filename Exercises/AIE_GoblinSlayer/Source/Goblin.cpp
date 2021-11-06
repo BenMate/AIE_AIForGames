@@ -61,7 +61,7 @@ void Goblin::Draw()
 	//the longer the player is in the radius of the goblin... the alpha goes up
 	
 
-	//convert alpha int to unsigned char for t
+	//convert int m_alpha to unsigned char
 	unsigned char alpha; alpha = (unsigned char)m_alpha;
 	DrawCircle(m_position.x, m_position.y, m_goblinRadius, { 230, 41, 55, alpha });
 	

@@ -33,6 +33,8 @@ void GameObject::Draw()
 	//where the player is currently being told to go
 	//DrawLine(m_position.x, m_position.y, m_position.x + m_acceleration.x, m_position.y + m_acceleration.y, RED);
 
+	DrawCircle(m_position.x, m_position.y, 5, GRAY);
+
 	m_acceleration = { 0,0 };
 }
 

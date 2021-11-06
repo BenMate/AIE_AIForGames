@@ -50,8 +50,9 @@ void GuideState::Draw()
 
 	DrawText("Controls!", 10, 100, 30, DARKGRAY);
 	DrawText("Press t to quit", 10, 125, 20, GRAY);
-	DrawText("Press p to pause", 10 , 150, 20 , GRAY);
-	DrawText("Press W, A, S, D to move", 10, 175, 20, GRAY);
+	DrawText("Press space to pause", 10 , 150, 20 , GRAY);
+	DrawText("Press W, A, S, D to mode", 10, 175, 20, GRAY);
+	DrawText("Hold Tab to show dev move", 10, 200, 20, GRAY);
 	
 	DrawText("Gameplay!", 10, 240, 30, DARKGRAY);
 	DrawText("Try to Remain hidden! If you're caught, you lose!", 10, 275, 20, RED);
